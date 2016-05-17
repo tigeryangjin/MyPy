@@ -26,7 +26,7 @@ while status_code != 200:  # 如果输入的ID不存在，则要求重新输入I
     status_code = r.json()['code']
 else:
     arr = r.json()['result']['tracks']
-    play_list_name = r.json()['result']['name'] #歌单名
+    play_list_name = r.json()['result']['name']  # 歌单名
     download_path = 'G:/Music/Music/' + play_list_name + '/'  # 下载目录:每个歌单创建新的文件夹，文件名为歌单名
 
     # 如果目录不存在这创建目录
@@ -37,13 +37,15 @@ else:
 
     # 下载playlist的歌曲
     for i in range(len(arr)):
-        s_name = arr[i]['name'] #歌曲名
+        s_name = arr[i]['name']  # 歌曲名
         music_name = s_name.strip('\/:*?"<>|')  # 剔除歌曲名字中的特殊字符，这些特殊字符不能做文件名
-        artists=1 #演唱者
-        name = str(i + 1) + '_' + music_name + '.mp3'
+        artists = []  # 演唱者
+        for j in range(len(r.json()['result']['tracks'][i]['artists'])):
+            artists.append(r.json()['result']['tracks'][i]['artists'][j]['name'])
+        name = str(i + 1) + '[' + music_name + ']'
         link = arr[i]['mp3Url']
         try:
             urllib.request.urlretrieve(link, download_path + name)  # 提前要创建文件夹
-            print(name + link + ' 下载完成')
+            print(name + str(artists) + link + ' 下载完成')
         except:
-            print(name + link + ' 无法下载')
+            print(name + str(artists) + link + ' 无法下载')

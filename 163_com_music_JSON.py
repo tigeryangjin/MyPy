@@ -12,7 +12,7 @@ result = r.json()['result']['tracks']
 for i in range(len(r.json()['result']['tracks'])):
     for key in r.json()['result']['tracks'][i]:
         if key == 'artists':
-            artist = [] #存储歌手列表
+            artist = []  # 存储歌手列表
             for j in range(len(r.json()['result']['tracks'][i]['artists'])):
                 artist.append(r.json()['result']['tracks'][i]['artists'][j]['name'])
-            print('['+r.json()['result']['tracks'][i]['name']+'] '+ str(artist))
+            print('[' + r.json()['result']['tracks'][i]['name'] + '] ' + str(artist))
