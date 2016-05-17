@@ -1,3 +1,1 @@
-s='jflakhkjfhaskjdhfa'
-print(type(s))
-print(s[4])
+import cx_Oracle
