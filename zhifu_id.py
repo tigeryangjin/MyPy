@@ -9,7 +9,7 @@ def main():
     #感觉这个话题下面美女多
     headers={省略}
     i=1
-    for x in xrange(20,3600,20):
+    for x in range(20,3600,20):
         data={'start':'0','offset':str(x),'_xsrf':'a128464ef225a69348cef94c38f4e428'}
     #知乎用offset控制加载的个数，每次响应加载20
 content=requests.post(url,headers=headers,data=data,timeout=10).text
