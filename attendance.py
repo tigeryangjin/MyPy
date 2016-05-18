@@ -67,12 +67,15 @@ def main():
     ## #返回的是一个包含tuple的list，list的元素是记录行，tuple的元素是每行记录的字段
     ## ms.ExecNonQuery("insert into WeiBoUser values('2','3')")
 
-    ms = MSSQL(host="192.168.2.228", user="sa", pwd="123", db="zktime8")
-    delRec = ms.ExecNonQuery("DELETE zktime8.dbo.CHECKINOUT   WHERE PIN='0006320835' AND CONVERT(varchar(100),CHECKTIME,112)=CONVERT(varchar(100), GETDATE(), 112);")
-    insertRec1 = ms.ExecNonQuery("INSERT INTO zktime8.dbo.CHECKINOUT(CHECKTIME,CHECKTYPE,VERIFYCODE,SN_NAME,PIN) VALUES(DATEADD(second,ABS(CHECKSUM(NEWID())) % DATEDIFF(second,'08:00','08:25'),CONVERT(char(8),getdate(),112) + ' 08:00'),255,2,1911300460207,'0006320835');")
-    insertRec2 = ms.ExecNonQuery("INSERT INTO zktime8.dbo.CHECKINOUT(CHECKTIME,CHECKTYPE,VERIFYCODE,SN_NAME,PIN) VALUES(DATEADD(second,ABS(CHECKSUM(NEWID())) % DATEDIFF(second,'12:00','12:10'),CONVERT(char(8),getdate(),112) + ' 12:00'),255,2,1911300460207,'0006320835');")
-    insertRec3 = ms.ExecNonQuery("INSERT INTO zktime8.dbo.CHECKINOUT(CHECKTIME,CHECKTYPE,VERIFYCODE,SN_NAME,PIN) VALUES(DATEADD(second,ABS(CHECKSUM(NEWID())) % DATEDIFF(second,'12:30','12:40'),CONVERT(char(8),getdate(),112) + ' 12:30'),255,2,1911300460207,'0006320835');")
-    insertRec4 = ms.ExecNonQuery("INSERT INTO zktime8.dbo.CHECKINOUT(CHECKTIME,CHECKTYPE,VERIFYCODE,SN_NAME,PIN) VALUES(DATEADD(second,ABS(CHECKSUM(NEWID())) % DATEDIFF(second,'17:30','18:00'),CONVERT(char(8),getdate(),112) + ' 17:30'),255,2,1911300460207,'0006320835');")
+    try:
+        ms = MSSQL(host="192.168.2.228", user="sa", pwd="123", db="zktime8")
+        delRec = ms.ExecNonQuery("DELETE zktime8.dbo.CHECKINOUT   WHERE PIN='0006320835' AND CONVERT(varchar(100),CHECKTIME,112)=CONVERT(varchar(100), GETDATE(), 112);")
+        insertRec1 = ms.ExecNonQuery("INSERT INTO zktime8.dbo.CHECKINOUT(CHECKTIME,CHECKTYPE,VERIFYCODE,SN_NAME,PIN) VALUES(DATEADD(second,ABS(CHECKSUM(NEWID())) % DATEDIFF(second,'08:00','08:25'),CONVERT(char(8),getdate(),112) + ' 08:00'),255,2,1911300460207,'0006320835');")
+        insertRec2 = ms.ExecNonQuery("INSERT INTO zktime8.dbo.CHECKINOUT(CHECKTIME,CHECKTYPE,VERIFYCODE,SN_NAME,PIN) VALUES(DATEADD(second,ABS(CHECKSUM(NEWID())) % DATEDIFF(second,'12:00','12:10'),CONVERT(char(8),getdate(),112) + ' 12:00'),255,2,1911300460207,'0006320835');")
+        insertRec3 = ms.ExecNonQuery("INSERT INTO zktime8.dbo.CHECKINOUT(CHECKTIME,CHECKTYPE,VERIFYCODE,SN_NAME,PIN) VALUES(DATEADD(second,ABS(CHECKSUM(NEWID())) % DATEDIFF(second,'12:30','12:40'),CONVERT(char(8),getdate(),112) + ' 12:30'),255,2,1911300460207,'0006320835');")
+        insertRec4 = ms.ExecNonQuery("INSERT INTO zktime8.dbo.CHECKINOUT(CHECKTIME,CHECKTYPE,VERIFYCODE,SN_NAME,PIN) VALUES(DATEADD(second,ABS(CHECKSUM(NEWID())) % DATEDIFF(second,'17:30','18:00'),CONVERT(char(8),getdate(),112) + ' 17:30'),255,2,1911300460207,'0006320835');")
+    except Exception as e:
+        print(Exception,":",e)
 
 
 if __name__ == '__main__':
