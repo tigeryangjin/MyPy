@@ -54,9 +54,9 @@ def mp3_download():
 
 
 def playlist_search():
-    keyWord = input('请输入搜索关键词：')
+    key_word = input('请输入搜索关键词：')
     u = 'http://music.163.com/api/playlist/detail?id='
-    playList=[]
+    play_list = []
     for i in range(99999):
         url = u + str(i)
         r = requests.get(url)
@@ -66,10 +66,11 @@ def playlist_search():
         else:
             arr = r.json()['result']['tracks']
             play_list_name = r.json()['result']['name']  # 歌单名
-            if play_list_name.find(keyWord) == -1:
+            if play_list_name.find(key_word) == -1:
                 pass
             else:
-                playList.append(play_list_name)
-    print(playList)
+                play_list.append(play_list_name)
+    print(play_list)
+
 
 playlist_search()
