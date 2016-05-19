@@ -85,7 +85,7 @@ def playlist_to_file():
     u = 'http://music.163.com/api/playlist/detail?id='
     valid_id = []
     r_get = requests.get
-    fp = open('output2.txt', 'w', encoding="utf8")
+    fp = open('output.txt', 'w', encoding="utf8")
     fp_write = fp.write
     stri = str
     c = range(1000000, 1099999)
