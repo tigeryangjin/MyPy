@@ -54,23 +54,51 @@ def mp3_download():
 
 
 def playlist_search():
-    key_word = input('请输入搜索关键词：')
+    keyword = input('请输入搜索关键词：')
     u = 'http://music.163.com/api/playlist/detail?id='
-    play_list = []
-    for i in range(99999):
+    valid_id = []
+    data = []
+
+    for i in range(1000000, 9999999):
+        url = u + str(i)
+        r = requests.get(url)
+        status_code = r.json()['code']
+        # 如果status_code！=200，则歌单id不存在
+        if status_code != 200:
+            pass
+        else:
+            play_list_name = r.json()['result']['name']
+            # 判断关键词是否在歌单名称中
+            if play_list_name.find(keyword) != -1:
+                valid_id.append(i)
+                valid_id.append(play_list_name)
+                data.append(valid_id)
+                valid_id = []
+
+    for i in range(len(data)):
+        print((data[i]))
+
+
+def playlist_to_file():
+    u = 'http://music.163.com/api/playlist/detail?id='
+    validid = []
+    data = []
+    for i in range(1000000, 1009999):
         url = u + str(i)
         r = requests.get(url)
         status_code = r.json()['code']
         if status_code != 200:
             pass
         else:
-            arr = r.json()['result']['tracks']
-            play_list_name = r.json()['result']['name']  # 歌单名
-            if play_list_name.find(key_word) == -1:
-                pass
-            else:
-                play_list.append(play_list_name)
-    print(play_list)
+            playlistname = r.json()['result']['name']
+            validid.append(i)
+            validid.append(playlistname)
+            data.append(validid)
+            validid = []
+
+    fp = open('output19.txt', 'w')
+    for i in range(len(data)):
+        fp.write(str(data[i])+'\n')
 
 
-playlist_search()
+playlist_to_file()

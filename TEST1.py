@@ -14,5 +14,8 @@ for i in range(1000000, 1000009):
         validID.append(i)
         validID.append(playListName)
         data.append(validID)
+        validID = []
 
-print(data)
+fp=open('',)
+for i in range(len(data)):
+    print(data[i])
