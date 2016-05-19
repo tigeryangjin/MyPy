@@ -84,11 +84,12 @@ def playlist_to_file():
     t = time()
     u = 'http://music.163.com/api/playlist/detail?id='
     valid_id = []
-    data = []
-    data_append = data.append
     r_get = requests.get
-    for i in range(1000000, 1009999):
-        t1 = time()
+    fp = open('output2.txt', 'w', encoding="utf8")
+    fp_write = fp.write
+    stri = str
+    c = range(1000000, 1099999)
+    for i in c:
         url = u + str(i)
         try:
             r = r_get(url)
@@ -101,16 +102,9 @@ def playlist_to_file():
             play_list_name = r.json()['result']['name']
             valid_id.append(i)
             valid_id.append(play_list_name)
-            data_append(valid_id)
+            fp_write(stri(valid_id) + '\n')
             valid_id = []
-            print(i, time() - t1)
-    print(time() - t)
-
-    fp = open('output.txt', 'w', encoding="utf8")
-    fp_write = fp.write
-    stri = str
-    for i in range(len(data)):
-        fp_write(stri(data[i]) + '\n')
+    fp.close()
     print(time() - t)
 
 
