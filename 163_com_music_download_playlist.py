@@ -81,28 +81,32 @@ def playlist_search():
 
 def playlist_to_file():
     u = 'http://music.163.com/api/playlist/detail?id='
-    validid = []
+    valid_id = []
     data = []
+    valid_id_append = valid_id.append
+    data_append = data.append
+    r_get = requests.get
     for i in range(1000000, 1000999):
         url = u + str(i)
         try:
-            r = requests.get(url)
+            r = r_get(url)
         except:
             pass
         status_code = r.json()['code']
         if status_code != 200:
             pass
         else:
-            playlistname = r.json()['result']['name']
-            playlistname = playlistname.strip('\/:*?"<>|')
-            validid.append(i)
-            validid.append(playlistname)
-            data.append(validid)
-            validid = []
+            play_list_name = r.json()['result']['name']
+            valid_id_append(i)
+            valid_id_append(play_list_name)
+            data_append(valid_id)
+            valid_id = []
 
-    fp = open('output19.txt', 'w')
+    fp = open('output.txt', 'w', encoding="utf8")
+    fp_write = fp.write
+    stri = str
     for i in range(len(data)):
-        fp.write(str(data[i]) + '\n')
+        fp_write(stri(data[i]) + '\n')
 
 
 playlist_to_file()
