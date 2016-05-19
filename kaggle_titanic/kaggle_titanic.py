@@ -9,7 +9,7 @@ import pandas as pd
 # from pandas import DataFrame
 # from patsy import dmatrices
 
-df = pd.read_csv("G:/Documents/MyPython/kaggle_titanic/Data/train.csv")
+df = pd.read_csv("G:\Documents\MyPy\MyPy\kaggle_titanic\Data/train.csv")
 df = df.drop(['Ticket', 'Cabin'], axis=1)  # 去除Ticket、Cabin列
 df = df.dropna()  # 删除有数据缺失的行
 
@@ -41,7 +41,7 @@ ax3 = plt.subplot2grid((2, 3), (0, 2))
 df.Pclass.value_counts().plot(kind="barh", alpha=alpha_bar_chart)
 ax3.set_ylim(-1, len(df.Pclass.value_counts()))
 plt.title("Class Distribution")
-
+'''
 # 年龄与阶级
 plt.subplot2grid((2, 3), (1, 0), colspan=2)
 # plots a kernel desnsity estimate of the subset of the 1st class passanges's age
@@ -53,6 +53,7 @@ plt.xlabel("Age")
 plt.title("Age Distribution within classes")
 # sets our legend for our graph.
 plt.legend(('1st Class', '2nd Class', '3rd Class'), loc='best')
+'''
 
 # 登机位置与幸存数量的关系对比
 ax5 = plt.subplot2grid((2, 3), (1, 2))
