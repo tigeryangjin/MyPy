@@ -6,6 +6,7 @@ import requests
 import urllib
 from urllib import request
 import os
+from time import time
 
 
 def mp3_download():
@@ -80,13 +81,14 @@ def playlist_search():
 
 
 def playlist_to_file():
+    t = time()
     u = 'http://music.163.com/api/playlist/detail?id='
     valid_id = []
     data = []
-    valid_id_append = valid_id.append
     data_append = data.append
     r_get = requests.get
-    for i in range(1000000, 1000999):
+    for i in range(1000000, 1009999):
+        t1 = time()
         url = u + str(i)
         try:
             r = r_get(url)
@@ -97,16 +99,19 @@ def playlist_to_file():
             pass
         else:
             play_list_name = r.json()['result']['name']
-            valid_id_append(i)
-            valid_id_append(play_list_name)
+            valid_id.append(i)
+            valid_id.append(play_list_name)
             data_append(valid_id)
             valid_id = []
+            print(i, time() - t1)
+    print(time() - t)
 
     fp = open('output.txt', 'w', encoding="utf8")
     fp_write = fp.write
     stri = str
     for i in range(len(data)):
         fp_write(stri(data[i]) + '\n')
+    print(time() - t)
 
 
 playlist_to_file()
