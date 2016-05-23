@@ -1,14 +1,13 @@
-from time import time
+import numpy as np
+from pylab import plot, show
 
-t = time()
-lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-listb = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.01]
-len1 = len(lista)
-len2 = len(listb)
-for i in range(1000000):
-    for a in range(len1):
-        temp = lista[a]
-        for b in range(len2):
-            x = temp + listb[b]
-print("total run time:")
-print(time() - t)
+# 加载数据
+da = np.fromfile('iris.csv')
+print(da)
+print(type(da))
+
+# 图表展示
+# plot(data[target == 'setosa', 0], data[target == 'setosa', 2], 'bo')
+# plot(data[target == 'versicolor', 0], data[target == 'versicolor', 2], 'ro')
+# plot(data[target == 'virginica', 0], data[target == 'virginica', 2], 'go')
+# show()
