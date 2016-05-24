@@ -11,15 +11,13 @@ localFile.close()
 
 # 加载数据
 # read the first 4 columns
+# 如果此处用loadtxt会有问题。
 data = genfromtxt('iris.csv', delimiter=',', usecols=(0, 1, 2, 3))
 # read the fifth column
 target = genfromtxt('iris.csv', delimiter=',', usecols=([4]), dtype=str)
 
-# print(data.shape)
-# print(target.shape)
-# print(set(target))
-print(data[:, 0])
-print(max(data[:, 0]))
+# print(type(data))
+# print(type(target))
 
 # 图表展示
 plot(data[target == 'setosa', 0], data[target == 'setosa', 2], 'bo')
@@ -46,3 +44,12 @@ subplot(414)  # global histogram (4th, on the bottom)
 hist(data[:, 0], color='y', alpha=.7)
 xlim(xmin, xmax)
 # show()
+
+# 分类
+print(type(target))
+t = zeros(len(target))
+
+t[target == 'setosa'] = 1
+t[target == 'versicolor'] = 2
+t[target == 'virginica'] = 3
+
