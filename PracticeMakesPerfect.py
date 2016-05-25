@@ -92,34 +92,38 @@ def count(sequence, item):
             countItem = countItem
     return countItem
 
+
 def purify(listNum):
-    listEven=[]
+    listEven = []
     for i in listNum:
-        if i%2==0:
+        if i % 2 == 0:
             listEven.append(i)
     return listEven
 
+
 def product(listNum):
-    mul=1
+    mul = 1
     for i in listNum:
-        mul*=i
+        mul *= i
     return mul
 
+
 def remove_duplicates(listDup):
-    listReturn=[]
+    listReturn = []
     for i in listDup:
         if i not in listReturn:
             listReturn.append(i)
     return listReturn
 
+
 def median(listIn):
-    listSort=sorted(listIn)
-    listLen=len(listSort)
-    if listLen%2==0:
-        medianEven=(float(listSort[int(listLen/2)])+float(listSort[int(listLen/2-1)]))/2
+    listSort = sorted(listIn)
+    listLen = len(listSort)
+    if listLen % 2 == 0:
+        medianEven = (float(listSort[int(listLen / 2)]) + float(listSort[int(listLen / 2 - 1)])) / 2
         return medianEven
     else:
-        medianOdd=listSort[int(listLen/2)]
+        medianOdd = listSort[int(listLen / 2)]
         return medianOdd
 
 

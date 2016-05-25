@@ -1,6 +1,10 @@
-import numpy as np
+from numpy import array
 
-data = np.loadtxt('populations.txt')
-np.savetxt('pop2.txt', data)
-data2 = np.loadtxt('pop2.txt')
-print(data2)
+array1 = array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
+print(array1)
+print(array1.ndim)
+print(array1.shape)
+print(array1.size)
+print(array1.dtype)
+print(array1.itemsize)
+print(array1.data)
