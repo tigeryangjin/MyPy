@@ -1,12 +1,9 @@
 import requests
 from numpy import genfromtxt, zeros
-from pylab import plot, show, figure, subplot, hist, xlim, show
+from pylab import plot, figure, subplot, hist, xlim, show
 from matplotlib import pyplot as plt
-
-
-# import matplotlib.pyplot as plt
-
-# import matplotlib.pyplot as plt
+from sklearn.naive_bayes import GaussianNB
+from sklearn import cross_validation
 
 
 def download_data():
@@ -147,8 +144,23 @@ def fig2():
 # fig2()
 
 # 分类
-t = zeros(len(target))
+def clsfr():
+    t = zeros(len(target))
+    t[target == 'setosa'] = 1
+    t[target == 'versicolor'] = 2
+    t[target == 'virginica'] = 3
+    classifier = GaussianNB()
+    classifier.fit(data, t)  # training on the iris dataset
+    train, test, t_train, t_test = cross_validation.train_test_split(data, t, test_size=0.4, random_state=0)
+    print(train)
+    print('----------')
+    print(test)
+    print('----------')
+    print(t_train)
+    print('----------')
+    print(t_test)
+    classifier.fit(train, t_train)  # train
+    return classifier.score(test, t_test)  # test
 
-t[target == 'setosa'] = 1
-t[target == 'versicolor'] = 2
-t[target == 'virginica'] = 3
+
+print(clsfr())
