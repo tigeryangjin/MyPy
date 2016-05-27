@@ -1,9 +1,10 @@
 import requests
-from numpy import genfromtxt, zeros
+from numpy import genfromtxt, zeros, array
 from pylab import plot, figure, subplot, hist, xlim, show
 from matplotlib import pyplot as plt
 from sklearn.naive_bayes import GaussianNB
 from sklearn import cross_validation
+from sklearn.metrics import classification_report
 
 
 def download_data():
@@ -145,22 +146,42 @@ def fig2():
 
 # 分类
 def clsfr():
+    train1_err = []
+    # test1_err = []
+    train2_err = []
+    test2_err = []
     t = zeros(len(target))
     t[target == 'setosa'] = 1
     t[target == 'versicolor'] = 2
     t[target == 'virginica'] = 3
     classifier = GaussianNB()
     classifier.fit(data, t)  # training on the iris dataset
+    for i in range(len(t)):
+        if classifier.predict(data[i]) != array(t[i]):
+            train1_err.append((classifier.predict(data[i]), t[i]))
     train, test, t_train, t_test = cross_validation.train_test_split(data, t, test_size=0.4, random_state=0)
-    print(train)
-    print('----------')
-    print(test)
-    print('----------')
-    print(t_train)
-    print('----------')
-    print(t_test)
     classifier.fit(train, t_train)  # train
-    return classifier.score(test, t_test)  # test
+    for i in range(len(t_train)):
+        if classifier.predict(train[i]) != array(t_train[i]):
+            train2_err.append((classifier.predict(train[i]), t_train[i]))
+    for i in range(len(t_test)):
+        if classifier.predict(test[i]) != array(t_test[i]):
+            test2_err.append((classifier.predict(test[i]), t_test[i]))
+    print('train error: ', train1_err)
+    print('train count: ', len(t))
+    print('train error count: ', len(train1_err))
+    print('accuracy rate: ', classifier.score(data, t))
+    print('*******************************************')
+    print('train error: ', train2_err)
+    print('test error: ', test2_err)
+    print('train count: ', len(train))
+    print('train error count: ', len(train2_err))
+    print('test count: ', len(test))
+    print('test error count: ', len(test2_err))
+    print('test accuracy rate: ', classifier.score(test, t_test))  # test
+    print('train accuracy rate: ', classifier.score(train, t_train))
+    print('****************************************************')
+    print(classification_report(classifier.predict(test), t_test, target_names=['setosa', 'versicolor', 'virginica']))
 
 
 print(clsfr())
