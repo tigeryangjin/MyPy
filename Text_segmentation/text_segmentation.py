@@ -12,7 +12,6 @@ source_data = file.readlines()
 output_file_name = 'copy'  # 生成文件名
 output_file_id = 1
 count = 0
-
 # 中间临时文件处理，执行完成后删除
 tmp_file = open('copy_tmp.sql', 'w')  # 生成一个新文件
 for i in range(len(source_data)):
