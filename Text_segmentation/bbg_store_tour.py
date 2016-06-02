@@ -11,7 +11,7 @@ path = path.strip()
 if os.path.exists(path):
     pass
 else:
-    os.makedirs('G:\Documents\MyPy\MyPy\Text_segmentation\output')
+    os.makedirs(path)
 row_num = 10  # 每个分割文件的行数
 row_head = 'copy from'
 row_head_length = len(row_head)

@@ -4,8 +4,7 @@
 import cx_Oracle
 import os
 import csv
-from openpyxl import Workbook  # 读取excel
-from openpyxl import load_workbook  # 写入excel
+import xlsxwriter
 
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'  # 设置中文编码
 
