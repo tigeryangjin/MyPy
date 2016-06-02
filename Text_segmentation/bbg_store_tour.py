@@ -64,3 +64,31 @@ for fileid in range(len(tmp_data) // 10 + 1):
             new_file.writelines(tmp_data[i])
     new_file.writelines(spool_last)
     new_file.close()
+
+# 生成bat批处理文件
+# sqlplus /nolog @copy_1.sql
+seg_file = open(path + 'copy_ALL.sql', 'r')
+tmp_data = seg_file.readlines()
+for fileid in range(len(tmp_data) // 10 + 1):
+    bat_file = open(path + output_file_name + str(fileid + 1) + '.bat', 'w')
+    bat_file.writelines('sqlplus /nolog @' + output_file_name + str(fileid + 1) + '.sql')
+    bat_file.close()
+
+# 生成总的bat批处理文件
+total_bat_file = open(path + 'all_start_bat.bat', 'w')
+total_bat_file.writelines('@echo off\n')
+total_bat_file.writelines('\n')
+total_bat_file.writelines('REM --------------------------------------------------\n')
+total_bat_file.writelines('REM 启动所有bat\n')
+total_bat_file.writelines('REM --------------------------------------------------\n')
+total_bat_file.writelines('@echo #正在启动copy_1.bat-copy_25.bat......\n')
+total_bat_file.writelines('\n')
+total_bat_file.writelines('d:\n')
+total_bat_file.writelines('\n')
+for i in range(len(tmp_data) // 10 + 1):
+    total_bat_file.writelines('cd D:\cp_to_zb\ \n')
+    total_bat_file.writelines(
+        'start "' + output_file_name + str(i + 1) + '.bat"' + output_file_name + str(i + 1) + '.bat\n')
+    total_bat_file.writelines('\n')
+total_bat_file.writelines('exit;\n')
+total_bat_file.close()
