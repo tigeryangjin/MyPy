@@ -27,6 +27,8 @@ v_spool_begin = "spool d:\cp_to_zb\log\\"
 v_spool_end = 'spool off;'
 v_sub_file_name_head = 'copy'  # 生成分割文件名Head
 
+sql_result = []  # sql查询结果作为全局变量
+
 
 # sql查询结果保存到文件
 def sql_query_to_file():
@@ -46,6 +48,7 @@ def sql_query_to_file():
     conn = cx_Oracle.connect(v_user, v_password, v_description)
     cursor = conn.cursor()
     cursor.execute(sql_text)
+    global sql_result
     sql_result = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -109,6 +112,7 @@ def generate_file_area():
     seg_file = open(v_path + v_top_sql_file, 'r')
     tmp_data = seg_file.readlines()
     print(tmp_data)
+    print(sql_result)
     pass
 
 
