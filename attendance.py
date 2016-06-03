@@ -1,6 +1,7 @@
 import pymssql
 
 
+# 上班考勤打卡
 class MSSQL:
     """
     对pymssql的简单封装

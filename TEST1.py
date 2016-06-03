@@ -1,21 +1,12 @@
-from openpyxl import Workbook
+import time
+import xlsxwriter
 
-# 在内存中创建一个workbook对象，而且会至少创建一个 worksheet
-wb = Workbook()
-
-ws = wb.get_active_sheet()
-print(ws.title)
-
-ws.title = 'New Title'  # 设置worksheet的标题
-
-# 设置单元格的值
-ws.cell('D3').value = 4
-ws.cell(row=3, column=1).value = 6
-
-new_ws = wb.create_sheet(title='new_sheet')
-for row in range(100):
-    for col in range(10):
-        new_ws.cell(row=row, column=col).value = row + col
-
-# 最后一定要保存！
-wb.save(filename='new_file.xlsx')
+v_curr_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+v_file_name = 'YM_' + v_curr_time + '.xlsx '
+print(v_file_name)
+workbook = xlsxwriter.Workbook(v_file_name)
+# 创建
+worksheet = workbook.add_worksheet()
+# 写入列名
+worksheet.write(0, 0, '销售日期')
+worksheet.write(0, 1, '去年同期日期')

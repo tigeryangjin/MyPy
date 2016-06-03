@@ -13,17 +13,17 @@ print(type(data))
 print(len(data))
 """
 
-#import urllib
+# import urllib
 import urllib.request
 import urllib.parse
-data={}
-data['word']='python'
 
-url_values=urllib.parse.urlencode(data)
-url="http://www.baidu.com/s?"
-full_url=url+url_values
+data = {}
+data['word'] = 'python'
 
-data=urllib.request.urlopen(full_url).read()
-data=data.decode('UTF-8')
+url_values = urllib.parse.urlencode(data)
+url = "http://www.baidu.com/s?"
+full_url = url + url_values
+
+data = urllib.request.urlopen(full_url).read()
+data = data.decode('UTF-8')
 print(data)
-

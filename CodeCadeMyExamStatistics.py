@@ -17,18 +17,19 @@ def grades_average(grades):
     average = grades_sum(grades) / float(len(grades))
     return average
 
+
 def grades_variance(scores):
-    average=grades_average(scores)
-    variance=0
+    average = grades_average(scores)
+    variance = 0
     for score in scores:
-        variance+=(average-score)**2
-    variance=variance/float(len(scores))
+        variance += (average - score) ** 2
+    variance = variance / float(len(scores))
     return variance
 
 
 def grades_std_deviation(variance):
-    std=grades_variance(variance)**0.5
-    #std=1
+    std = grades_variance(variance) ** 0.5
+    # std=1
     return std
 
 

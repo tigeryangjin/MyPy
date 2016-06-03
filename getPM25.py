@@ -7,7 +7,9 @@
 import urllib3
 import threading
 from time import ctime
-#from bs4 import BeautifulSoup
+
+
+# from bs4 import BeautifulSoup
 
 
 def getPM25(cityname):
