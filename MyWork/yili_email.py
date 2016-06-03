@@ -38,6 +38,10 @@ def export_excel_file():
     workbook = xlsxwriter.Workbook(v_file_name)
     # 创建
     worksheet = workbook.add_worksheet()
+
+    # Add an Excel date format.
+    date_format = workbook.add_format({'num_format': 'yyyy/mm/dd'})
+
     # 写入列名
     worksheet.write(0, 0, '销售日期')
     worksheet.write(0, 1, '去年同期日期')
@@ -61,7 +65,10 @@ def export_excel_file():
     worksheet.write(0, 19, '去年毛利额')
     for r in range(len(sql_result)):
         for c in range(len(sql_result[r])):
-            worksheet.write(r + 1, c, sql_result[r][c])
+            if c in (0, 1):
+                worksheet.write(r + 1, c, sql_result[r][c], date_format)
+            else:
+                worksheet.write(r + 1, c, sql_result[r][c])
 
     workbook.close()
 
