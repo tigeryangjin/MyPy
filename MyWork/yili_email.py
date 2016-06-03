@@ -4,7 +4,7 @@
 import cx_Oracle
 import os
 import xlsxwriter
-import time
+# import time
 # from email import encoders
 from email.header import Header
 from email.mime.text import MIMEText
@@ -14,7 +14,7 @@ import smtplib
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'  # 设置中文编码
 
 
-def export_excel_file():
+def export_excel_file(v_date):
     # Oracle查询SQL
     sql_file = open('D:\WORK\BBG\JOB\伊利\daily_report.sql', 'r')
     sql_lines = sql_file.readlines()
@@ -32,8 +32,7 @@ def export_excel_file():
 
     # 生成excel文件-------------------------------------------------------
     # 生成excel文件名
-    v_curr_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
-    v_file_name = 'YM_' + v_curr_time + '.xlsx '
+    v_file_name = 'YM_' + v_date + '.xlsx '
     print(v_file_name)
     workbook = xlsxwriter.Workbook(v_file_name)
     # 创建
@@ -94,3 +93,5 @@ def send_email():
     server.login(from_addr, password)
     server.sendmail(from_addr, [to_addr], msg.as_string())
     server.quit()
+
+export_excel_file('2016-05-31')
