@@ -9,6 +9,8 @@
 import cx_Oracle
 import os
 
+os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'  # 设置中文编码
+
 # oracle连接参数
 # conn = cx_Oracle.connect('RADM', 'RADM', 'ra-scan.bbgretek.com.cn:1521/radb') #RADM
 v_user = 'rms'
@@ -19,7 +21,7 @@ v_description = 'dm03-scan.bbgretek.com.cn:1521/rmsdb'
 v_top_sql_file = 'copy_ALL.sql'  # 查询结果保存文件
 v_top_bat_file = 'all_start_bat.bat'  # 生成的总批处理文件
 v_path = 'G:\Documents\MyPy\MyPy\Text_segmentation\output\\'  # 存放目录
-v_sql_path = 'G:\Documents\MyPy\MyPy\Text_segmentation\yangjin.sql'
+v_sql_path = 'G:\Documents\MyPy\MyPy\Text_segmentation\yangjin2.sql'
 v_row_num = 10  # 每个分割文件的行数
 v_spool_begin = "spool d:\cp_to_zb\log\\"
 v_spool_end = 'spool off;'
@@ -35,7 +37,7 @@ def sql_query_to_file():
         os.makedirs(v_path)
     # yangjin.sql文件读入sql_text字符串
     sql_text = ''
-    sql_file = open(v_sql_path, 'r')
+    sql_file = open(v_sql_path, 'r', encoding="utf8")
     sql_segment = sql_file.readlines()
     for i in range(len(sql_segment)):
         sql_text += sql_segment[i].strip() + ' '
@@ -51,7 +53,7 @@ def sql_query_to_file():
     # 保存结果到copy_ALL.sql文件
     all_file = open(v_path + v_top_sql_file, 'w')
     for i in range(len(sql_result)):
-        all_file.writelines(sql_result[i])
+        all_file.writelines(sql_result[i][0])
     all_file.close()
 
 
@@ -103,8 +105,13 @@ def generate_file_all():
 
 
 def generate_file_area():
+    # 生成分割文件
+    seg_file = open(v_path + v_top_sql_file, 'r')
+    tmp_data = seg_file.readlines()
+    print(tmp_data)
     pass
 
 
 sql_query_to_file()
-generate_file_all()
+# generate_file_all()
+generate_file_area()

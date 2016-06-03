@@ -42,6 +42,7 @@ sql_result = cursor.fetchall()
 cursor.close()
 conn.close()
 
+
 # 保存结果到copy_ALL.sql文件
 all_file = open(path + file_name, 'w')
 for i in range(len(sql_result)):

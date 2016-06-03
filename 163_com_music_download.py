@@ -14,8 +14,6 @@ import os
 # r = requests.get('http://music.163.com/api/playlist/detail?id=3779629')	# 云音乐新歌榜
 r = requests.get('http://music.163.com/api/playlist/detail?id=3778678')
 
-
-
 arr = r.json()['result']['tracks']  # 共有100首歌
 play_list_name = r.json()['result']['name']
 download_path = 'G:/Music/Music/' + play_list_name + '/'  # 下载目录:每个歌单创建新的文件夹，文件名为歌单名
