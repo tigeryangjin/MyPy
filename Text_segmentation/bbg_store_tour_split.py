@@ -16,7 +16,7 @@ v_password = 'Rms12345'
 v_description = 'dm03-scan.bbgretek.com.cn:1521/rmsdb'
 
 # 参数配置
-v_top_sql_file = 'copy_ALL.sql'  # 生成的总文件名
+v_top_sql_file = 'copy_ALL.sql'  # 查询结果保存文件
 v_top_bat_file = 'all_start_bat.bat'  # 生成的总批处理文件
 v_path = 'G:\Documents\MyPy\MyPy\Text_segmentation\output\\'  # 存放目录
 v_sql_path = 'G:\Documents\MyPy\MyPy\Text_segmentation\yangjin.sql'
@@ -26,6 +26,7 @@ v_spool_end = 'spool off;'
 v_sub_file_name_head = 'copy'  # 生成分割文件名Head
 
 
+# sql查询结果保存到文件
 def sql_query_to_file():
     # 如果目录不存在则创建目录
     if os.path.exists(v_path):
