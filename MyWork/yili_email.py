@@ -5,7 +5,7 @@ import cx_Oracle
 import os
 import xlsxwriter
 import time
-from email import encoders
+# from email import encoders
 from email.header import Header
 from email.mime.text import MIMEText
 from email.utils import parseaddr, formataddr
@@ -65,7 +65,7 @@ def export_excel_file():
     worksheet.write(0, 19, '去年毛利额')
     for r in range(len(sql_result)):
         for c in range(len(sql_result[r])):
-            if c in (0, 1):
+            if c in (0, 1):  # 第一、二列为日期格式
                 worksheet.write(r + 1, c, sql_result[r][c], date_format)
             else:
                 worksheet.write(r + 1, c, sql_result[r][c])
