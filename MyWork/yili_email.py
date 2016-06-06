@@ -96,8 +96,10 @@ def send_email(v_date):
         smtp.sendmail('tigeryangjin@outlook.com', '12109471@qq.com', str(msg))  # 发送邮件
         smtp.quit()
         print('邮件发送成功！')
+        input()
     except Exception as e:
         print(Exception, ":", e)
+        input()
 
 
 def yili_email(v_date):

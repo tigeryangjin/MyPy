@@ -84,6 +84,7 @@ def main():
         input()
     except Exception as e:
         print(Exception, ":", e)
+        input()
 
 
 if __name__ == '__main__':
