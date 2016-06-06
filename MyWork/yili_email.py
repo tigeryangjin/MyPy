@@ -7,6 +7,7 @@ import xlsxwriter
 import smtplib
 import email.mime.multipart
 import email.mime.text
+import datetime
 
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'  # 设置中文编码
 
@@ -19,17 +20,21 @@ def export_excel_file(v_date):
     for i in range(len(sql_lines)):
         sql_text += sql_lines[i].strip() + ' '
 
+    # 日期参数
+
+
     # 配置信息
     conn = cx_Oracle.connect('rms', 'Rms12345', 'dm03-scan.bbgretek.com.cn:1521/rmsdb')
     cursor = conn.cursor()
-    cursor.execute(sql_text)
+    cursor.execute(sql_text, {'TODAY': datetime.date(2016, 6, 5)})  # 传入日期参数
     sql_result = cursor.fetchall()
     cursor.close()
     conn.close()
 
     # 生成excel文件-------------------------------------------------------
     # 生成excel文件名
-    v_file_name = 'YM_' + v_date + '.xlsx '
+    path = 'D:\WORK\BBG\JOB\伊利\表格\\'
+    v_file_name = path + 'YM_' + v_date + '.xlsx '
     print(v_file_name)
     workbook = xlsxwriter.Workbook(v_file_name)
     # 创建
@@ -65,8 +70,8 @@ def export_excel_file(v_date):
                 worksheet.write(r + 1, c, sql_result[r][c], date_format)
             else:
                 worksheet.write(r + 1, c, sql_result[r][c])
-
     workbook.close()
+    print('导出到xlsx文件成功！')
 
 
 # 发送邮件
@@ -109,4 +114,4 @@ def yili_email(v_date):
     send_email(v_date)
 
 
-send_email('2016-06-05')
+export_excel_file('2016-06-01')
