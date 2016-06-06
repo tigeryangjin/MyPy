@@ -4,12 +4,9 @@
 import cx_Oracle
 import os
 import xlsxwriter
-# import time
-# from email import encoders
-from email.header import Header
-from email.mime.text import MIMEText
-from email.utils import parseaddr, formataddr
 import smtplib
+import email.mime.multipart
+import email.mime.text
 
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'  # 设置中文编码
 
@@ -73,25 +70,44 @@ def export_excel_file(v_date):
 
 
 # 发送邮件
-def send_email():
-    def _format_addr(s):
-        name, addr = parseaddr(s)
-        return formataddr((Header(name, 'utf-8').encode(), addr))
+def send_email(v_date):
+    msg = email.mime.multipart.MIMEMultipart()
+    msg['from'] = '12109471@qq.com'
+    msg['to'] = 'tigeryangjin@outlook.com'
+    msg['subject'] = 'ym'
+    content = '''
+        你好，
+                这是一封自动发送的邮件。
 
-    from_addr = 'From: tigeryangjin@outlook.com'
-    password = 'Password: '
-    to_addr = 'To: '
-    smtp_server = 'SMTP server: '
 
-    msg = MIMEText('hello, send by Python...', 'plain', 'utf-8')
-    msg['From'] = _format_addr('Python爱好者 <%s>' % from_addr)
-    msg['To'] = _format_addr('管理员 <%s>' % to_addr)
-    msg['Subject'] = Header('来自SMTP的问候……', 'utf-8').encode()
+    '''
+    txt = email.mime.text.MIMEText(content)
+    msg.attach(txt)
 
-    server = smtplib.SMTP(smtp_server, 25)
-    server.set_debuglevel(1)
-    server.login(from_addr, password)
-    server.sendmail(from_addr, [to_addr], msg.as_string())
-    server.quit()
+    # 构造附件1，传送当前目录下的 test.txt 文件
+    annex_file_name = 'YM_' + v_date + '.xlsx'
+    att1 = email.mime.text.MIMEText(open('D:\WORK\BBG\JOB\伊利\表格\\' + annex_file_name, 'rb').read(), 'base64', 'utf-8')
+    att1["Content-Type"] = 'application/octet-stream'
+    # 这里的filename可以任意写，写什么名字，邮件中显示什么名字
+    att1["Content-Disposition"] = 'attachment; filename=' + annex_file_name
+    msg.attach(att1)
 
-export_excel_file('2016-05-31')
+    smtp = smtplib
+    smtp = smtplib.SMTP()
+    smtp.connect('smtp-mail.outlook.com', '25')  # 连接到发邮件服务器
+    smtp.starttls()  # 开启TLS/SSL加密
+    smtp.login('tigeryangjin@outlook.com', 'tiger19790909')  # 登录邮箱
+    smtp.sendmail('tigeryangjin@outlook.com', '12109471@qq.com', str(msg))  # 发送邮件
+    smtp.quit()
+
+    try:
+        smtp_object = smtplib.SMTP('localhost')
+        smtp_object.sendmail(msg['from'], msg['to'], msg.as_string())
+        print("邮件发送成功")
+    except smtplib.SMTPException:
+        print("Error: 无法发送邮件")
+
+
+def yili_email(v_date):
+    export_excel_file(v_date)
+    send_email(v_date)
