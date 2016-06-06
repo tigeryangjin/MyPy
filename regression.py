@@ -1,7 +1,6 @@
 def linear_regression(x, y):
     x_mean = sum(x) / len(x)
     y_mean = sum(y) / len(y)
-    print(x_mean,y_mean)
     a = 0
     b = 0
     c = 0
@@ -16,7 +15,7 @@ def linear_regression(x, y):
     return r
 
 
-x = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-y = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+x = [1, 2]
+y = [1, 2]
 
 print(linear_regression(x, y))

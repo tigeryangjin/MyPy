@@ -88,45 +88,6 @@ lloyd = StudentsScore('lloyd', [90.0, 97.0, 75.0, 92.0], [88.0, 40.0, 94.0], [75
 alice = StudentsScore('alice', [100.0, 92.0, 98.0, 100.0], [82.0, 83.0, 91.0], [89.0, 97.0])
 tyler = StudentsScore('Tyler', [0.0, 87.0, 75.0, 22.0], [0.0, 75.0, 78.0], [100.0, 100.0])
 
-# print(StudentsScore.average(lloyd.homework))
-# print(StudentsScore.average(lloyd.quizzes))
-# print(StudentsScore.average(lloyd.tests))
-# print(StudentsScore.get_average(lloyd))
-# print(StudentsScore.get_letter_grade(int(90)))
-
-
-# lloyd = {
-#     "name": "Lloyd",
-#     "homework": [90.0, 97.0, 75.0, 92.0],
-#     "quizzes": [88.0, 40.0, 94.0],
-#     "tests": [75.0, 90.0]
-# }
-
-
-# def get_letter_grade(score):
-#     if score >= 90:
-#         return "A"
-#     elif score >= 80:
-#         return "B"
-#     elif score >= 70:
-#         return "C"
-#     elif score >= 60:
-#         return "D"
-#     else:
-#         return "F"
-#
-# def get_class_average(students):
-#     results = []
-#     for student in students:
-#         results.append(get_average(student))
-#     return average(results)
-
-# students = [lloyd, alice, tyler]
-# print(get_class_average(students))
-# print(get_letter_grade(get_class_average(students)))
-
-import time
-
 
 # 斐波那契数列 方法一
 def fibonacci(m):
@@ -155,12 +116,3 @@ def fib(m):
     for i in range(int(num) - 2):
         fibs.append(fibs[-2] + fibs[-1])
     return fibs
-
-
-time1 = time.time()
-fibonacci(100000)
-time2 = time.time()
-fib(100000)
-print(time2 - time1)
-print(time.time() - time2)
-print((time2 - time1) - (time.time() - time2))
