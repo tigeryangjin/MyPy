@@ -1,5 +1,6 @@
 # Python3.5
 # -*- coding: utf-8 -*-
+# Author by YangJin
 
 import cx_Oracle
 import os
@@ -12,7 +13,7 @@ import datetime
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'  # 设置中文编码
 
 
-def export_excel_file(v_date):
+def export_excel_file_daily(v_date):
     # Oracle查询SQL
     sql_file = open('D:\WORK\BBG\JOB\伊利\daily_report.sql', 'r')
     sql_lines = sql_file.readlines()
@@ -85,7 +86,7 @@ def export_excel_file(v_date):
 
 
 # 发送邮件
-def send_email(v_date):
+def send_email_daily(v_date):
     # 构造邮件头和正文
     msg = email.mime.multipart.MIMEMultipart()
     msg['from'] = 'tigeryangjin@gmail.com'
@@ -114,14 +115,14 @@ def send_email(v_date):
         input()
     except Exception as e:
         print(Exception, ":", e)
-        send_email(v_date)
+        send_email_daily(v_date)
 
 
-def yili_email(v_date):
+def yili_email_daily(v_date):
     # 导出xlsx文件到磁盘
-    export_excel_file(v_date)
+    export_excel_file_daily(v_date)
     # 导出文件作为附件发送邮件
-    send_email(v_date)
+    send_email_daily(v_date)
 
 
-yili_email(input('请输入日期（格式：yyyy-mm-dd）: '))
+yili_email_daily(input('请输入日期（格式：yyyy-mm-dd）: '))
