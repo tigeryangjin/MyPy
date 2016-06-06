@@ -8,3 +8,4 @@ data = r.text
 # i = data.index('10,491.18')
 i = 308774
 print('SLV持仓数量：', data[i: i + 9])
+input()
