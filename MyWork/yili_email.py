@@ -74,13 +74,8 @@ def send_email(v_date):
     msg = email.mime.multipart.MIMEMultipart()
     msg['from'] = '12109471@qq.com'
     msg['to'] = 'tigeryangjin@outlook.com'
-    msg['subject'] = 'ym'
-    content = '''
-        你好，
-                这是一封自动发送的邮件。
-
-
-    '''
+    msg['subject'] = 'YM_' + v_date
+    content = '''    '''
     txt = email.mime.text.MIMEText(content)
     msg.attach(txt)
 
@@ -94,7 +89,7 @@ def send_email(v_date):
 
     smtp = smtplib
     smtp = smtplib.SMTP()
-    smtp.connect('smtp-mail.outlook.com', '25')  # 连接到发邮件服务器
+    smtp.connect('smtp-mail.outlook.com', '25')  # 连接到发邮件服务器 端口：25、587
     smtp.starttls()  # 开启TLS/SSL加密
     smtp.login('tigeryangjin@outlook.com', 'tiger19790909')  # 登录邮箱
     smtp.sendmail('tigeryangjin@outlook.com', '12109471@qq.com', str(msg))  # 发送邮件
@@ -111,5 +106,6 @@ def send_email(v_date):
 def yili_email(v_date):
     export_excel_file(v_date)
     send_email(v_date)
+
 
 send_email('2016-06-05')
