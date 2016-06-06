@@ -71,40 +71,39 @@ def export_excel_file(v_date):
 
 # 发送邮件
 def send_email(v_date):
+    # 构造邮件头和正文
     msg = email.mime.multipart.MIMEMultipart()
-    msg['from'] = '12109471@qq.com'
-    msg['to'] = 'tigeryangjin@outlook.com'
+    msg['from'] = 'tigeryangjin@gmail.com'
+    msg['to'] = '1370365906@qq.com'
     msg['subject'] = 'YM_' + v_date
-    content = '''    '''
+    content = '''发送自Python '''  # 邮件正文
     txt = email.mime.text.MIMEText(content)
     msg.attach(txt)
 
-    # 构造附件1，传送当前目录下的 test.txt 文件
-    annex_file_name = 'YM_' + v_date + '.xlsx'
-    att1 = email.mime.text.MIMEText(open('D:\WORK\BBG\JOB\伊利\表格\\' + annex_file_name, 'rb').read(), 'base64', 'utf-8')
+    # 构造附件
+    attachment_name = 'YM_' + v_date + '.xlsx'  # 附件名称
+    att1 = email.mime.text.MIMEText(open('D:\WORK\BBG\JOB\伊利\表格\\' + attachment_name, 'rb').read(), 'base64', 'utf-8')
     att1["Content-Type"] = 'application/octet-stream'
-    # 这里的filename可以任意写，写什么名字，邮件中显示什么名字
-    att1["Content-Disposition"] = 'attachment; filename=' + annex_file_name
+    att1["Content-Disposition"] = 'attachment; filename=' + attachment_name  # 邮件显示的附件名称
     msg.attach(att1)
 
-    # smtp = smtplib
-    smtp = smtplib.SMTP()
-    smtp.connect('smtp-mail.outlook.com', '25')  # 连接到发邮件服务器 端口：25、587
-    smtp.starttls()  # 开启TLS/SSL加密
-    smtp.login('tigeryangjin@outlook.com', 'tiger19790909')  # 登录邮箱
-    smtp.sendmail('tigeryangjin@outlook.com', '12109471@qq.com', str(msg))  # 发送邮件
-    smtp.quit()
-
+    # 发送邮件
     try:
-        smtp_object = smtplib.SMTP('localhost')
-        smtp_object.sendmail(msg['from'], msg['to'], msg.as_string())
-        print("邮件发送成功")
-    except smtplib.SMTPException:
-        print("Error: 无法发送邮件")
+        smtp = smtplib.SMTP()
+        smtp.connect('smtp-mail.outlook.com', '25')  # 连接到发邮件服务器 端口：25、587
+        smtp.starttls()  # 开启TLS/SSL加密
+        smtp.login('tigeryangjin@outlook.com', 'tiger19790909')  # 登录邮箱
+        smtp.sendmail('tigeryangjin@outlook.com', '12109471@qq.com', str(msg))  # 发送邮件
+        smtp.quit()
+        print('邮件发送成功！')
+    except Exception as e:
+        print(Exception, ":", e)
 
 
 def yili_email(v_date):
+    # 导出xlsx文件到磁盘
     export_excel_file(v_date)
+    # 导出文件作为附件发送邮件
     send_email(v_date)
 
 
