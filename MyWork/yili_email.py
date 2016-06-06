@@ -111,3 +111,5 @@ def send_email(v_date):
 def yili_email(v_date):
     export_excel_file(v_date)
     send_email(v_date)
+
+send_email('2016-06-05')
