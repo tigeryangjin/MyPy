@@ -87,7 +87,7 @@ def send_email(v_date):
     att1["Content-Disposition"] = 'attachment; filename=' + annex_file_name
     msg.attach(att1)
 
-    smtp = smtplib
+    # smtp = smtplib
     smtp = smtplib.SMTP()
     smtp.connect('smtp-mail.outlook.com', '25')  # 连接到发邮件服务器 端口：25、587
     smtp.starttls()  # 开启TLS/SSL加密

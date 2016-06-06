@@ -13,11 +13,8 @@ money = workbook.add_format({'num_format': '$#,##0'})
 # Write some data headers.
 # worksheet.write('A1', 'Item', bold)
 # worksheet.write('B1', 'Cost', bold)
-worksheet.write(0, 0, 'Item')
-worksheet.write(0, 1, 'Cost')
-worksheet.write(0, 0, bold)
-worksheet.write(0, 1, bold)
-
+worksheet.write(0, 0, 'Item', bold)
+worksheet.write(0, 1, 'Cost', bold)
 
 # Some data we want to write to the worksheet.
 expenses = (
