@@ -116,3 +116,12 @@ def fib(m):
     for i in range(int(num) - 2):
         fibs.append(fibs[-2] + fibs[-1])
     return fibs
+
+
+# 以需要的时间间隔执行某个命令
+def re_exe(cmd, inc=3):
+    import time
+    import os
+    while True:
+        os.system(cmd)
+        time.sleep(inc)
