@@ -1,5 +1,7 @@
 from numpy import *
 import operator
+import matplotlib
+import matplotlib.pyplot as plt
 
 
 def createDataSet():
@@ -44,5 +46,17 @@ def file2matrix(filename):
 
 datingDataMat, datingLabels = file2matrix(
     'E:\Personal\BOOK\机器学习\MLiA_SourceCode\machinelearninginaction\Ch02\datingTestSet2.txt')
+# print(datingDataMat)
+# print(datingLabels)
+
+fig = plt.figure()
+ax = fig.add_subplot(311)
+# ax.scatter(datingDataMat[:, 1], datingDataMat[:, 2], 15 * array(datingLabels), 15 * array(datingLabels))
+ax.scatter(datingDataMat[:, 1], datingDataMat[:, 2], c='r')
+ay = fig.add_subplot(312)
+ay.scatter(datingDataMat[:, 1], datingDataMat[:, 2], 15 * array(datingLabels), 15 * array(datingLabels))
+az = fig.add_subplot(313)
+az.scatter(datingDataMat[:, 1], datingDataMat[:, 2], 15 * array(datingLabels), 15 * array(datingLabels))
+print(type(datingDataMat))
 print(datingDataMat)
-print(datingLabels)
+# plt.show()
