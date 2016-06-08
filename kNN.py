@@ -44,20 +44,31 @@ def file2matrix(filename):
     return returnMat, classLabelVector
 
 
+def autoNorm(dataSet):
+    # newValue=(oldValue-min)/(max-min)
+    minVals = dataSet.min(0)
+    maxVals = dataSet.max(0)
+    ranges = maxVals - minVals
+    normDataSet = zeros(shape(dataSet))
+    m = dataSet.shape[0]
+    normDataSet = dataSet - tile(minVals, (m, 1))
+    normDataSet = normDataSet / tile(ranges, (m, 1))
+    return normDataSet, ranges, minVals
+
+
 datingDataMat, datingLabels = file2matrix(
     'E:\Personal\BOOK\机器学习\MLiA_SourceCode\machinelearninginaction\Ch02\datingTestSet2.txt')
 # print(datingDataMat)
+print(datingDataMat - tile(datingDataMat.min(0), (1000, 1)))
 # print(datingLabels)
 
+# 散点图
 fig = plt.figure()
-ax = fig.add_subplot(311)
-# ax.scatter(datingDataMat[:, 1], datingDataMat[:, 2], 15 * array(datingLabels), 15 * array(datingLabels))
+ax = fig.add_subplot(131)
+# c='r':颜色为红色
 ax.scatter(datingDataMat[:, 1], datingDataMat[:, 2], c='r')
-ay = fig.add_subplot(312)
+ay = fig.add_subplot(132)
 ay.scatter(datingDataMat[:, 1], datingDataMat[:, 2], 15 * array(datingLabels), 15 * array(datingLabels))
-az = fig.add_subplot(313)
-az.scatter(datingDataMat[:, 1], datingDataMat[:, 2], 15 * array(datingLabels), 15 * array(datingLabels))
-print(type(datingDataMat))
-print(datingDataMat)
-print(datingLabels)
+az = fig.add_subplot(133)
+az.scatter(datingDataMat[:, 0], datingDataMat[:, 1], 15 * array(datingLabels), 15 * array(datingLabels))
 # plt.show()

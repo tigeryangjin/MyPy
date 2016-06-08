@@ -3,24 +3,22 @@ from numpy import *
 import matplotlib
 import matplotlib.pyplot as plt
 
-a = random.random(size=50)
-b = random.random(size=50)
+a = random.randint(0, 50, 50)
+b = random.randint(0, 50, 50)
 
-x = array([a, b])
 
-# print(x)
-# basic
 f1 = plt.figure(1)
 plt.subplot(211)
-plt.scatter(x[:, 1], x[:, 0])
+plt.scatter(a, b)
 
 # with label
 plt.subplot(212)
 label = list(ones(20)) + list(2 * ones(15)) + list(3 * ones(15))
 label = array(label)
 
-# plt.scatter(x[:, 1], x[:, 0], 15.0 * label, 15.0 * label)
-print(x)
-print(x[:, 0])
-print(x[:, 1])
+plt.scatter(a, b, 15.0 * label, 15.0 * label)
+plt.show()
+
+print(a)
+print(b)
 print(label)

@@ -125,3 +125,26 @@ def re_exe(cmd, inc=3):
     while True:
         os.system(cmd)
         time.sleep(inc)
+
+
+def plt_scatter():
+    from numpy import random, ones, array
+    import matplotlib.pyplot as plt
+    a = random.randint(0, 50, 50)
+    b = random.randint(0, 50, 50)
+    fig = plt.figure(1)
+    plt.subplot(211)
+    plt.scatter(a, b)
+
+    # with label
+    plt.subplot(212)
+    label = list(ones(20)) + list(2 * ones(15)) + list(3 * ones(15))
+    label = array(label)
+    # 画图，最后二个参数为颜色参数。
+    # label数据类型为numpy.ndarray，有三种值（1，2，3）
+    plt.scatter(a, b, 15.0 * label, 15.0 * label)
+    plt.show()
+    print(label)
+
+
+plt_scatter()
