@@ -56,16 +56,13 @@ def autoNorm(dataSet):
 def plt_scatter():
     datingDataMat, datingLabels = file2matrix(
         'E:\Personal\BOOK\机器学习\MLiA_SourceCode\machinelearninginaction\Ch02\datingTestSet2.txt')
-
     normMat, ranges, minVals = autoNorm(datingDataMat)
-
     # 散点图
     fig = plt.figure()
     ax = fig.add_subplot(211)
     ax.scatter(datingDataMat[:, 0], datingDataMat[:, 1], 15 * array(datingLabels), 15 * array(datingLabels))
     ay = fig.add_subplot(212)
     ay.scatter(normMat[:, 0], normMat[:, 1], 15 * array(datingLabels), 15 * array(datingLabels))
-
     plt.show()
 
 
@@ -83,7 +80,10 @@ def datingClassTest():
         if (classifierResult != datingLabels[i]):
             errorCount += 1.0
     print('the total error rate is: %f' % (errorCount / float(numTestVecs)))
-    print(numTestVecs)
 
 
 datingClassTest()
+
+
+
+
