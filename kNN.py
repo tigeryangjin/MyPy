@@ -25,9 +25,6 @@ def classify0(inX, dataSet, labels, k):
     return sortedClassCount[0][0]
 
 
-# group, labels = createDataSet()
-# print(classify0([0, 0], group, labels, 3))
-
 def file2matrix(filename):
     fr = open(filename)
     numberOfLines = len(fr.readlines())  # get the number of lines in the file
@@ -56,19 +53,37 @@ def autoNorm(dataSet):
     return normDataSet, ranges, minVals
 
 
-datingDataMat, datingLabels = file2matrix(
-    'E:\Personal\BOOK\机器学习\MLiA_SourceCode\machinelearninginaction\Ch02\datingTestSet2.txt')
-# print(datingDataMat)
-print(datingDataMat - tile(datingDataMat.min(0), (1000, 1)))
-# print(datingLabels)
+def plt_scatter():
+    datingDataMat, datingLabels = file2matrix(
+        'E:\Personal\BOOK\机器学习\MLiA_SourceCode\machinelearninginaction\Ch02\datingTestSet2.txt')
 
-# 散点图
-fig = plt.figure()
-ax = fig.add_subplot(131)
-# c='r':颜色为红色
-ax.scatter(datingDataMat[:, 1], datingDataMat[:, 2], c='r')
-ay = fig.add_subplot(132)
-ay.scatter(datingDataMat[:, 1], datingDataMat[:, 2], 15 * array(datingLabels), 15 * array(datingLabels))
-az = fig.add_subplot(133)
-az.scatter(datingDataMat[:, 0], datingDataMat[:, 1], 15 * array(datingLabels), 15 * array(datingLabels))
-# plt.show()
+    normMat, ranges, minVals = autoNorm(datingDataMat)
+
+    # 散点图
+    fig = plt.figure()
+    ax = fig.add_subplot(211)
+    ax.scatter(datingDataMat[:, 0], datingDataMat[:, 1], 15 * array(datingLabels), 15 * array(datingLabels))
+    ay = fig.add_subplot(212)
+    ay.scatter(normMat[:, 0], normMat[:, 1], 15 * array(datingLabels), 15 * array(datingLabels))
+
+    plt.show()
+
+
+def datingClassTest():
+    hoRatio = 0.10  # 10%记录作为测试集
+    datingDataMat, datingLabels = file2matrix(
+        'E:\Personal\BOOK\机器学习\MLiA_SourceCode\machinelearninginaction\Ch02\datingTestSet2.txt')
+    normMat, ranges, minVals = autoNorm(datingDataMat)
+    m = normMat.shape[0]
+    numTestVecs = int(m * hoRatio)  # 100条记录作为测试集
+    errorCount = 0.0  # 错误记录计数器
+    for i in range(numTestVecs):
+        classifierResult = classify0(normMat[i, :], normMat[numTestVecs:m, :], datingLabels[numTestVecs:m], 3)
+        print('the classifier came back with: %d,the real answer is: %d' % (classifierResult, datingLabels[i]))
+        if (classifierResult != datingLabels[i]):
+            errorCount += 1.0
+    print('the total error rate is: %f' % (errorCount / float(numTestVecs)))
+    print(numTestVecs)
+
+
+datingClassTest()
