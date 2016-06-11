@@ -11,6 +11,6 @@ print('SLV持仓数量（吨）：', data[i: i + 9])
 price = data.index('Mid-Point Price')
 price += 320
 print('中间价（美元/盎司）：', data[price:price + 5])
-rmb_price = float(data[price:price + 5]) / 28.3495231 * 6.5690
+rmb_price = float(data[price:price + 5]) / 28.3495231 * 6.5653
 print('中间价（元/克）', rmb_price)
 input()
