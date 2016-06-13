@@ -118,11 +118,20 @@ def send_email_daily(v_date):
         send_email_daily(v_date)
 
 
-def yili_email_daily(v_date):
+def yili_email_daily(default=str(datetime.date.today() - datetime.timedelta(days=1))):
+    v_date = input('请输入日期（格式：yyyy-mm-dd，默认值为昨天）: ')
     # 导出xlsx文件到磁盘
-    export_excel_file_daily(v_date)
+    # export_excel_file_daily(v_date)
     # 导出文件作为附件发送邮件
-    send_email_daily(v_date)
+    # send_email_daily(v_date)
+    if v_date == '':
+        # 如果v_date为空值则取default
+        export_excel_file_daily(default)
+        send_email_daily(default)
+    else:
+        # 如果v_date不为空值则取v_date
+        export_excel_file_daily(v_date)
+        send_email_daily(v_date)
 
 
-yili_email_daily(input('请输入日期（格式：yyyy-mm-dd）: '))
+yili_email_daily()
