@@ -147,4 +147,21 @@ def plt_scatter():
     print(label)
 
 
-plt_scatter()
+def matrix_mcl():
+    import numpy as np
+    a = np.arange(20).reshape(4, 5)
+    # a = [[20, 5], [15, 10]]
+    a = np.asmatrix(a)
+    b = np.arange(2, 45, 3).reshape(5, 3)
+    # b = [[2, 1], [1, 4]]
+    b = np.mat(b)
+    print("matrix a:")
+    print(a)
+    print("matrix b:")
+    print(b)
+    c = a * b
+    print("matrix c:")
+    print(c)
+
+
+matrix_mcl()
