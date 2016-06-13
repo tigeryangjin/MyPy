@@ -98,8 +98,8 @@ def yili_daily():
 
 def yili_dq_215():
     # 伊利215中类档期数据
-    v_bdate = input('请输入开始日期（格式：yyyy-mm-dd）')
-    v_edate = input('请输入结束日期（格式：yyyy-mm-dd）')
+    v_bdate = input('请输入开始日期（格式：yyyy-mm-dd）:')
+    v_edate = input('请输入结束日期（格式：yyyy-mm-dd）:')
     # Oracle查询SQL
     sql_file = open('D:\WORK\BBG\JOB\伊利\DQ_yili_215.sql', 'r')
     sql_lines = sql_file.readlines()
