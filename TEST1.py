@@ -1,14 +1,4 @@
-import threading
-
-
-def hello(name):
-    print("hello %s\n" % name)
-
-    global timer
-    timer = threading.Timer(2.0, hello, ["Hawk"])
-    timer.start()
-
-
-if __name__ == "__main__":
-    timer = threading.Timer(2.0, hello, ["Hawk"])
-    timer.start()
+l = [1, 2, 3, 4]
+print(type(l))
+for i in range(len(l)):
+    print(l[i])
