@@ -69,7 +69,7 @@ def main():
     ## ms.ExecNonQuery("insert into WeiBoUser values('2','3')")
 
     try:
-        ms = MSSQL(host="192.168.2.228", user="bbg", pwd="bbg", db="zktime8")
+        ms = MSSQL(host="192.168.2.228", user="sa", pwd="123", db="zktime8")
         delRec = ms.ExecNonQuery(
             "DELETE zktime8.dbo.CHECKINOUT   WHERE PIN='0006320835' AND CONVERT(varchar(100),CHECKTIME,112)=CONVERT(varchar(100), GETDATE(), 112);")
         insertRec1 = ms.ExecNonQuery(
