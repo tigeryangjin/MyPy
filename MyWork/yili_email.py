@@ -18,7 +18,7 @@ v_file_name = ''
 
 def yili_daily():
     # 每日销售数据
-    v_date = input('请输入日期（格式：yyyy-mm-dd，默认值为:'+str(datetime.date.today() - datetime.timedelta(days=1))+')\n ')
+    v_date = input('请输入日期（格式：yyyy-mm-dd，默认值为:' + str(datetime.date.today() - datetime.timedelta(days=1)) + ')\n ')
     if v_date == '':
         v_in_date = str(datetime.date.today() - datetime.timedelta(days=1))
     else:

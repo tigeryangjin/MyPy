@@ -184,4 +184,15 @@ def clsfr():
     print(classification_report(classifier.predict(test), t_test, target_names=['setosa', 'versicolor', 'virginica']))
 
 
-print(clsfr())
+# 聚类
+def cluster():
+    from sklearn.cluster import KMeans
+    from sklearn.metrics import completeness_score, homogeneity_score
+    kmeans = KMeans(n_clusters=3, init='random')
+    kmeans.fit(data)
+    c = kmeans.predict(data)
+    print(completeness_score(target, c))  # 完整性得分，当大部分数据点属于一个给定的类并且属于同一个群集，那么完整性得分就趋向于1
+    print(homogeneity_score(target, c))  # 同质性得分，当所有群集都几乎只包含某个单一类的数据点时同质性得分就趋向于1
+
+
+cluster()
