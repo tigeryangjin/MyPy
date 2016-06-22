@@ -191,8 +191,24 @@ def cluster():
     kmeans = KMeans(n_clusters=3, init='random')
     kmeans.fit(data)
     c = kmeans.predict(data)
-    print(completeness_score(target, c))  # 完整性得分，当大部分数据点属于一个给定的类并且属于同一个群集，那么完整性得分就趋向于1
-    print(homogeneity_score(target, c))  # 同质性得分，当所有群集都几乎只包含某个单一类的数据点时同质性得分就趋向于1
+    # print(completeness_score(target, c))  # 完整性得分，当大部分数据点属于一个给定的类并且属于同一个群集，那么完整性得分就趋向于1
+    # print(homogeneity_score(target, c))  # 同质性得分，当所有群集都几乎只包含某个单一类的数据点时同质性得分就趋向于1
+    figure()
+    subplot(211)  # top figure with the real classes
+    plot(data[target == 'setosa', 0], data[target == 'setosa', 2], 'bo')
+    plot(data[target == 'versicolor', 0], data[target == 'versicolor', 2], 'ro')
+    plot(data[target == 'virginica', 0], data[target == 'virginica', 2], 'go')
+    print(c)
+    print(target)
+    print(type(c))
+    print(type(target))
+    print(data)
+    print(type(data))
+    subplot(212)  # bottom figure with classes assigned automatically
+    plot(data[c == 0, 0], data[c == 0, 2], 'ro', alpha=.7)
+    plot(data[c == 1, 0], data[c == 1, 2], 'go', alpha=.7)
+    plot(data[c == 2, 0], data[c == 2, 2], 'bo', alpha=.7)
+    show()
 
 
 cluster()
