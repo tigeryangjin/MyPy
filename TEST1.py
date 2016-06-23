@@ -1,11 +1,30 @@
-import cx_Oracle
+class Stack:
+    def __init__(self):
+        self.items = []
 
-rms = cx_Oracle.connect('rms', 'Rms12345', 'dm03-scan.bbgretek.com.cn:1521/rmsdb')
-cursor = rms.cursor()
-cursor.execute('select sysdate from dual')
-query_result = cursor.fetchall()
-cursor.close()
-rms.close()
+    def isEmpty(self):
+        return len(self.items) == 0
 
-print(query_result)
-dir(cx_Oracle)
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        self.items.pop()
+
+    def peek(self):
+        if not self.isEmpty():
+            return self.items[len(self.items) - 1]
+
+    def size(self):
+        return len(self.items)
+
+
+l = []
+l.append('a')
+print(l)
+l.append('b')
+print(l)
+l.append('c')
+print(l)
+l.pop()
+print(l)
