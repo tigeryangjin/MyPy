@@ -40,6 +40,8 @@ def ra_batch_monitor():
 
     # Add an Excel date format.
     date_format = workbook.add_format({'num_format': 'yyyy/mm/dd', 'font_size': 9, 'font_name': '宋体'})
+    datetime_format = workbook.add_format({'num_format': 'yyyy/mm/dd hh:mm:ss', 'font_size': 9, 'font_name': '宋体'})
+    time_format = workbook.add_format({'num_format': 'hh:mm:ss', 'font_size': 9, 'font_name': '宋体'})
     head_format = workbook.add_format({'bold': 1, 'font_size': 9, 'font_name': '宋体'})
     data_format = workbook.add_format({'font_size': 9, 'font_name': '宋体'})
 
@@ -51,13 +53,16 @@ def ra_batch_monitor():
     worksheet.write(0, 4, 'END_TIME', head_format)
     worksheet.write(0, 5, 'RUN_TIME', head_format)
     worksheet.write(0, 6, 'MONTH_AVG_RUNTIME', head_format)
-    worksheet.write(0, 6, 'STATUS', head_format)
+    worksheet.write(0, 7, 'STATUS', head_format)
     # 导出数据
     for row in range(len(sql_result)):
         for column in range(len(sql_result[row])):
-            if column in (0, 1):  # 第一、二列为日期格式
+            if column == 1:  # 第二列为日期格式
                 worksheet.write(row + 1, column, sql_result[row][column], date_format)
-
+            elif column in (3, 4):  # 开始时间，结束时间
+                worksheet.write(row + 1, column, sql_result[row][column], datetime_format)
+            elif column in (5, 6):  # 执行时间，月平均执行时间
+                worksheet.write(row + 1, column, sql_result[row][column], time_format)
             else:
                 worksheet.write(row + 1, column, sql_result[row][column], data_format)
     workbook.close()
