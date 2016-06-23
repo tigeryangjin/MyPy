@@ -208,8 +208,11 @@ def cluster():
 # 回归
 def regression():
     from numpy.random import rand
+    from sklearn.linear_model import LinearRegression
     x = rand(40, 1)  # explanatory variable
     y = x * x * x + rand(40, 1) / 5  # depentend variable
+    linreg=LinearRegression()
+
     print(x)
     print('--------------------------------------')
     print(y)
