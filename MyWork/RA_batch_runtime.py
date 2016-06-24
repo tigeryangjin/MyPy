@@ -5,10 +5,11 @@
 import cx_Oracle
 import os
 import xlsxwriter
-import smtplib
-import email.mime.multipart
-import email.mime.text
-import datetime
+
+# import smtplib
+# import email.mime.multipart
+# import email.mime.text
+# import datetime
 
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'  # 设置中文编码
 
@@ -20,7 +21,7 @@ def ra_batch_monitor():
     sql_text = ''
     for i in range(len(sql_lines)):
         sql_text += sql_lines[i].strip() + ' '
-    print(sql_text)
+    # print(sql_text)
     # 数据库连接信息
     try:
         conn = cx_Oracle.connect('rms', 'Rms12345', 'dm03-scan.bbgretek.com.cn:1521/rmsdb')
@@ -44,6 +45,16 @@ def ra_batch_monitor():
     time_format = workbook.add_format({'num_format': 'hh:mm:ss', 'font_size': 9, 'font_name': '宋体'})
     head_format = workbook.add_format({'bold': 1, 'font_size': 9, 'font_name': '宋体'})
     data_format = workbook.add_format({'font_size': 9, 'font_name': '宋体'})
+
+    # 设置列宽度
+    worksheet.set_column('A:A', 7)  # 定义A列宽度为80
+    worksheet.set_column('B:B', 9)  # 定义A列宽度为80
+    worksheet.set_column('C:C', 25)  # 定义A列宽度为80
+    worksheet.set_column('D:D', 16)  # 定义A列宽度为80
+    worksheet.set_column('E:E', 16)  # 定义A列宽度为80
+    worksheet.set_column('F:F', 8)  # 定义A列宽度为80
+    worksheet.set_column('G:G', 17)  # 定义A列宽度为80
+    worksheet.set_column('H:H', 20)  # 定义A列宽度为80
 
     # 写入列名
     worksheet.write(0, 0, 'PHASE', head_format)
