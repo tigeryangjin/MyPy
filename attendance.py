@@ -64,11 +64,11 @@ class MSSQL:
 
 
 def main():
-    ## ms = MSSQL(host="localhost",user="sa",pwd="123456",db="PythonWeiboStatistics")
-    ## #返回的是一个包含tuple的list，list的元素是记录行，tuple的元素是每行记录的字段
-    ## ms.ExecNonQuery("insert into WeiBoUser values('2','3')")
-    ## 四楼:1911300460207
-    ## 三楼:1911300460094
+    # ms = MSSQL(host="localhost",user="sa",pwd="123456",db="PythonWeiboStatistics")
+    # #返回的是一个包含tuple的list，list的元素是记录行，tuple的元素是每行记录的字段
+    # ms.ExecNonQuery("insert into WeiBoUser values('2','3')")
+    # 四楼:1911300460207
+    # 三楼:1911300460094
 
     try:
         ms = MSSQL(host="192.168.2.228", user="sa", pwd="123", db="zktime8")
