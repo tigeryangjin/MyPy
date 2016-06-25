@@ -1,19 +1,11 @@
-a = 1
+import time
+from time import gmtime, strftime
 
+# now = time.localtime()
+# print(now)
+# print(strftime("%a, %d %b %Y %H:%M:%S +0000", now))
 
-def fun(a):
-    a = 2
+n=time.ctime()
+print(n)
+print(time.strptime(n))
 
-
-fun(a)
-print(a)
-
-a = []
-
-
-def fun(a):
-    a.append(1)
-
-
-fun(a)
-print(a)
