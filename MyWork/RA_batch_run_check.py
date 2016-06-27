@@ -86,7 +86,25 @@ def ra_batch_monitor():
 
 def ra_batch_error():
     # ra日结报错信息
-    pass
+    # UC4报错ksh
+    # 数据库连接信息
+    try:
+        conn = cx_Oracle.connect('rms', 'Rms12345', 'dm03-scan.bbgretek.com.cn:1521/rmsdb')
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT M.AH_ALIAS FROM ah@rms_uc4 M WHERE TRUNC(M.ah_timestamp2 + NUMTODSINTERVAL(8, 'hour')) = TRUNC(SYSDATE) AND M.AH_HOSTDST = 'RA_AGENT' AND M.AH_STATUS<>1900")  # 执行查询
+        sql_result = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        print('UC4检查完毕！')
+    except Exception as e:
+        print(Exception, ":", e)
+    if len(sql_result) == 0:
+        print('UC4中没有ksh执行报错！')
+    else:
+        print('UC4中找到报错ksh：')
+        for i in range(len(sql_result)):
+            print(sql_result[i])
 
 
-ra_batch_monitor()
+ra_batch_error()
