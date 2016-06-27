@@ -80,9 +80,6 @@ def ra_batch_monitor():
     workbook.close()
     print('导出到xlsx文件成功！')
 
-    # for i in range(len(sql_result)):
-    #     print(sql_result[i])
-
 
 def ra_batch_error():
     # ra日结报错信息
@@ -106,5 +103,24 @@ def ra_batch_error():
         for i in range(len(sql_result)):
             print(sql_result[i])
 
+    # ODI中报错信息
+    try:
+        # 连接RADM
+        conn = cx_Oracle.connect('RADM', 'RADM', 'ra-scan.bbgretek.com.cn:1521/radb')
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT M.AH_ALIAS FROM ah@rms_uc4 M WHERE TRUNC(M.ah_timestamp2 + NUMTODSINTERVAL(8, 'hour')) = TRUNC(SYSDATE) AND M.AH_HOSTDST = 'RA_AGENT' AND M.AH_STATUS<>1900")  # 执行查询
+        sql_result = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        print('ODI检查完毕！')
+    except Exception as e:
+        print(Exception, ":", e)
+    if len(sql_result) == 0:
+        print('ODI中没有接口报错！')
+    else:
+        print('ODI中找到报错接口：')
+        for i in range(len(sql_result)):
+            print(sql_result[i])
 
-ra_batch_error()
+# ra_batch_error()
