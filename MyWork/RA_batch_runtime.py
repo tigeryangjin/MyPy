@@ -15,6 +15,7 @@ os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'  # 设置中文编码
 
 
 def ra_batch_monitor():
+    # ra日结执行时间导出到excel
     # Oracle查询SQL文件
     sql_file = open('D:\WORK\BBG\RMS-RA Data check\RA-UC4执行时间监控\Python_ra_batch_monitor.sql', 'r')
     sql_lines = sql_file.readlines()
@@ -81,6 +82,11 @@ def ra_batch_monitor():
 
     # for i in range(len(sql_result)):
     #     print(sql_result[i])
+
+
+def ra_batch_error():
+    # ra日结报错信息
+    pass
 
 
 ra_batch_monitor()

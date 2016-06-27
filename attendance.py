@@ -110,9 +110,9 @@ def main():
     #     for i in range(len(query)):
     #         print(query[i])
     #     input()
-    except Exception as e:
-        print(Exception, ":", e)
-        input()
+    # except Exception as e:
+    #     print(Exception, ":", e)
+    #     input()
 
 
 if __name__ == '__main__':
