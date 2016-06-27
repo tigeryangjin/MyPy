@@ -89,7 +89,11 @@ def ra_batch_error():
         conn = cx_Oracle.connect('rms', 'Rms12345', 'dm03-scan.bbgretek.com.cn:1521/rmsdb')
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT M.AH_ALIAS FROM ah@rms_uc4 M WHERE TRUNC(M.ah_timestamp2 + NUMTODSINTERVAL(8, 'hour')) = TRUNC(SYSDATE) AND M.AH_HOSTDST = 'RA_AGENT' AND M.AH_STATUS<>1900")  # 执行查询
+            "SELECT M.AH_ALIAS "
+            "FROM ah@rms_uc4 M "
+            "WHERE TRUNC(M.ah_timestamp2 + NUMTODSINTERVAL(8, 'hour')) = TRUNC(SYSDATE) "
+            "AND M.AH_HOSTDST = 'RA_AGENT' "
+            "AND M.AH_STATUS<>1900")  # 执行查询
         sql_result = cursor.fetchall()
         cursor.close()
         conn.close()
@@ -141,8 +145,8 @@ def ra_batch_error():
         print('ODI中找到报错接口：')
         for i in range(len(sql_result)):
             print(sql_result[i][2])
-        print('报错信息：')
-        print(type(sql_result[i][6]))
+            print('报错信息：')
+            print(type(sql_result[i][6]))
 
 
 ra_batch_error()
