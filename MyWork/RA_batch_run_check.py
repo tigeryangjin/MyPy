@@ -109,10 +109,29 @@ def ra_batch_error():
         conn = cx_Oracle.connect('RADM', 'RADM', 'ra-scan.bbgretek.com.cn:1521/radb')
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT M.AH_ALIAS FROM ah@rms_uc4 M WHERE TRUNC(M.ah_timestamp2 + NUMTODSINTERVAL(8, 'hour')) = TRUNC(SYSDATE) AND M.AH_HOSTDST = 'RA_AGENT' AND M.AH_STATUS<>1900")  # 执行查询
+            "SELECT TRUNC(SE.SESS_BEG) DATES,"
+            "SE.SESS_NAME,"
+            "ST.STEP_NAME,"
+            "TS.TASK_NAME3,"
+            "TS.TASK_BEG,"
+            "TS.TASK_END,"
+            "TS.ERROR_MESSAGE "
+            "FROM ODI_WREP_USER.SNP_SESSION SE,"
+            "ODI_WREP_USER.SNP_SESS_STEP ST,"
+            "ODI_WREP_USER.SNP_SESS_TASK_LOG TS "
+            "WHERE SE.SESS_NO = ST.SESS_NO "
+            "AND SE.SESS_NO = TS.SESS_NO "
+            "AND ST.NNO = TS.NNO "
+            "AND ST.NB_RUN = TS.NB_RUN "
+            "AND TRUNC(SE.SESS_BEG) = TRUNC(SYSDATE)"
+            "AND TS.ERROR_MESSAGE IS NOT NULL "
+            "AND SE.SESS_STATUS='E'"
+            "AND TS.TASK_STATUS='E'"
+            "ORDER BY SE.SESS_BEG DESC")  # 执行查询
         sql_result = cursor.fetchall()
         cursor.close()
         conn.close()
+        print('************************')
         print('ODI检查完毕！')
     except Exception as e:
         print(Exception, ":", e)
@@ -121,6 +140,9 @@ def ra_batch_error():
     else:
         print('ODI中找到报错接口：')
         for i in range(len(sql_result)):
-            print(sql_result[i])
+            print(sql_result[i][2])
+        print('报错信息：')
+        print(type(sql_result[i][6]))
 
-# ra_batch_error()
+
+ra_batch_error()
