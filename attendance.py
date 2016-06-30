@@ -90,7 +90,7 @@ def main():
         input()
     except Exception as e:
         print(Exception, ":", e)
-        input()
+        # input()
 
         # try:
         #     ms = MSSQL(host="192.168.2.228", user="sa", pwd="123", db="zktime8")
