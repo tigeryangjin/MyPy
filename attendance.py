@@ -71,7 +71,7 @@ def main():
     # 三楼:1911300460094
 
     try:
-        ms = MSSQL(host="192.168.2.228", user="sa", pwd="BBG", db="zktime8")
+        ms = MSSQL(host="192.168.2.228", user="bbg", pwd="bbg", db="zktime8")
         delRec = ms.ExecNonQuery(
             "DELETE zktime8.dbo.CHECKINOUT WHERE PIN='0006320835' AND CONVERT(varchar(100),CHECKTIME,112)=CONVERT(varchar(100), GETDATE(), 112);")
         insertRec1 = ms.ExecNonQuery(
