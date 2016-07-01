@@ -164,7 +164,75 @@ def yili_dq_215():
 
 
 def yili_month_215():
-    pass
+    # 整体215中类月汇总数据
+    v_bdate = input('请输入月开始日期（格式：yyyy-mm-dd）:')
+    v_edate = input('请输入月结束日期（格式：yyyy-mm-dd）:')
+    # Oracle查询SQL
+    sql_file = open('D:\WORK\BBG\JOB\伊利\MONTH_ALL_215.sql', 'r')
+    sql_lines = sql_file.readlines()
+    sql_text = ''
+    for i in range(len(sql_lines)):
+        sql_text += sql_lines[i].strip() + ' '
+
+    # 日期参数
+    v_byear = int(v_bdate[0:4])
+    v_bmonth = int(v_bdate[5:7])
+    v_bday = int(v_bdate[8:10])
+    v_eyear = int(v_edate[0:4])
+    v_emonth = int(v_edate[5:7])
+    v_eday = int(v_edate[8:10])
+
+    # 配置信息
+    try:
+        conn = cx_Oracle.connect('rms', 'Rms12345', 'dm03-scan.bbgretek.com.cn:1521/rmsdb')
+        cursor = conn.cursor()
+        cursor.execute(sql_text, {'BDATE': datetime.date(v_byear, v_bmonth, v_bday),
+                                  'EDATE': datetime.date(v_eyear, v_emonth, v_eday)})  # 传入日期参数
+        sql_result = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        print('SQL查询完成！')
+    except Exception as e:
+        print(Exception, ":", e)
+
+    # 生成excel文件-------------------------------------------------------
+    # 生成excel文件名
+    path = 'D:\WORK\BBG\JOB\伊利\表格\\'
+    global v_file_name
+    v_file_name = 'MONTH_' + v_bdate + '~' + v_edate + '.xlsx '
+    v_file_path = path + v_file_name
+
+    workbook = xlsxwriter.Workbook(v_file_path)
+    # 创建
+    worksheet = workbook.add_worksheet()
+
+    # Add an Excel date format.
+    # date_format = workbook.add_format({'num_format': 'yyyy/mm/dd', 'font_size': 9, 'font_name': '宋体'})
+    head_format = workbook.add_format({'bold': 1, 'font_size': 9, 'font_name': '宋体'})
+    data_format = workbook.add_format({'font_size': 9, 'font_name': '宋体'})
+
+    # 写入列名
+    worksheet.write(0, 0, '销售日期', head_format)
+    worksheet.write(0, 1, '小类', head_format)
+    worksheet.write(0, 2, '小类名称', head_format)
+    worksheet.write(0, 3, '供应商编码', head_format)
+    worksheet.write(0, 4, '供应商名称', head_format)
+    worksheet.write(0, 5, '门店编码', head_format)
+    worksheet.write(0, 6, '门店名称', head_format)
+    worksheet.write(0, 7, '业态', head_format)
+    worksheet.write(0, 8, '区域', head_format)
+    worksheet.write(0, 9, '商品', head_format)
+    worksheet.write(0, 10, '商品名称', head_format)
+    worksheet.write(0, 11, '销售数量', head_format)
+    worksheet.write(0, 12, '销售成本', head_format)
+    worksheet.write(0, 13, '销售金额', head_format)
+    worksheet.write(0, 14, '毛利额', head_format)
+    for r in range(len(sql_result)):
+        for c in range(len(sql_result[r])):
+            worksheet.write(r + 1, c, sql_result[r][c], data_format)
+    workbook.close()
+    print('导出到xlsx文件成功！')
+    print(v_file_name)
 
 
 def send_email(v_file_name):
@@ -204,7 +272,7 @@ def top_level():
     msg = input('请选择要发送的邮件:\n'
                 '[0] 每日销售 \n'
                 '[1] 伊利215中类档期销售 \n'
-                '[2] 伊利215中类月汇总销售 \n'
+                '[2] 整体215中类月汇总销售 \n'
                 '-------------------------\n')
     if msg == '0':
         # [0] 每日销售
@@ -215,8 +283,9 @@ def top_level():
         yili_dq_215()
         send_email(v_file_name)
     elif msg == '2':
-        # [2] 伊利215中类月汇总销售
-        print('待开发。。。')
+        # [2] 整体215中类月汇总销售
+        yili_month_215()
+        send_email(v_file_name)
     else:
         print('输入错误！')
         top_level()
