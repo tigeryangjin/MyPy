@@ -22,19 +22,12 @@ def prime(x):
         if is_prime(num) is True:
             prime_list.append(num)
         num += 2
-        if num >= x:
+        if num >= math.sqrt(x):
             break
     return prime_list
 
 
-def factoring(x):
-    prime_list = prime(x)
-    for i in range(len(prime_list)):
-        m = x / prime_list[i]
-        if m / int(m) == 1:
-            return int(x), int(prime_list[i]), int(x / m)
+def prime_factorization():
+    # 整数(m)分解成二个素数（p,q）的乘积
 
-
-print(is_prime(9967))
-print(prime(10000))
-# print(factoring(280123))
+    pass

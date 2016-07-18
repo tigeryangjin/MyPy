@@ -148,5 +148,5 @@ def ra_batch_error():
             print('报错信息：')
             print(type(sql_result[i][6]))
 
-
 ra_batch_error()
+input()
