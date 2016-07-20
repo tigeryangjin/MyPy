@@ -1,4 +1,5 @@
 import math
+import time
 
 PRIME_LIST = []
 
@@ -23,7 +24,7 @@ def prime_list(x):
     num = 1
     while num >= 1:
         if is_prime(num) is True:
-            PRIME_LIST.append(int(num))
+            PRIME_LIST.append(num)
         num += 2
         if num >= math.sqrt(x):
             break
@@ -33,7 +34,7 @@ def prime_list(x):
 def prime_factorization(m):
     # 整数(m)分解成二个素数（p,q）的乘积
     # 991*997=988027
-    prime_list(int(m))
+    prime_list(m)
     for i in range(len(PRIME_LIST)):
         p = PRIME_LIST[i]
         q = m / p
@@ -42,5 +43,13 @@ def prime_factorization(m):
             # return m, int(m / PRIME_LIST)
 
 
-print(prime_factorization(2268458686984937))
-
+p = 47066161
+q = 43258601
+m = p * q
+print(p, is_prime(p))
+print(q, is_prime(q))
+print(p * q)
+start = time.clock()
+print(prime_factorization(m))
+elapsed = time.clock() - start
+print("Time used:", elapsed)
