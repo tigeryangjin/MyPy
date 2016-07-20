@@ -261,6 +261,7 @@ def send_email(v_file_name):
         smtp.sendmail('tigeryangjin@outlook.com', '1370365906@qq.com', str(msg))  # 发送邮件
         smtp.quit()
         print('邮件发送成功！')
+        print('执行完毕！')
         input()
     except Exception as e:
         print(Exception, ":", e)
