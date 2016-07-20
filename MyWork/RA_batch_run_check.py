@@ -147,6 +147,7 @@ def ra_batch_error():
             print(sql_result[i][2])
             print('报错信息：')
             print(type(sql_result[i][6]))
+        print('错误检测完毕！')
 
 ra_batch_error()
 input()
