@@ -42,5 +42,5 @@ def prime_factorization(m):
             # return m, int(m / PRIME_LIST)
 
 
-print(prime_factorization(1427247692705959880439315947500961989719490561))
+print(prime_factorization(2268458686984937))
 
