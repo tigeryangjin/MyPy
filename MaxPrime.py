@@ -11,6 +11,8 @@ def is_prime(x):
     if x >= 2:
         i = 2
         while i * i <= x:
+            # s = math.sqrt(x)
+            # while i <= s:
             if x % i == 0:
                 return False
             i += 1
@@ -43,8 +45,20 @@ def prime_factorization(m):
             # return m, int(m / PRIME_LIST)
 
 
-p = 47066161
-q = 43258601
+def prime_f2(m):
+    s = int(math.sqrt(m))
+    for i in range(s):
+        if is_prime(i) is True:
+            p = i
+            q = m / p
+            if q == int(q):
+                return p, int(q)
+
+
+# p = 47066161
+# q = 43258601
+p = 974411
+q = 638621
 m = p * q
 print(p, is_prime(p))
 print(q, is_prime(q))
@@ -53,3 +67,7 @@ start = time.clock()
 print(prime_factorization(m))
 elapsed = time.clock() - start
 print("Time used:", elapsed)
+start2 = time.clock()
+print(prime_f2(m))
+elapsed2 = time.clock() - start2
+print("Time used:", elapsed2)

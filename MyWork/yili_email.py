@@ -29,7 +29,6 @@ def yili_daily():
     sql_text = ''
     for i in range(len(sql_lines)):
         sql_text += sql_lines[i].strip() + ' '
-    print(sql_text)
     # 日期参数
     v_year = int(v_in_date[0:4])
     v_month = int(v_in_date[5:7])
