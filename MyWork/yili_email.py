@@ -237,7 +237,7 @@ def yili_month_215():
 def send_email(v_file_name):
     # 构造邮件头和正文
     msg = email.mime.multipart.MIMEMultipart()
-    msg['from'] = 'tigeryangjin@gmail.com'
+    msg['from'] = 'tigeryangjin@outlook.com'
     msg['to'] = '1370365906@qq.com'
     msg['subject'] = v_file_name
     content = '''发送自Python '''  # 邮件正文
