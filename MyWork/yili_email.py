@@ -251,31 +251,14 @@ def send_email(v_file_name):
     att1["Content-Disposition"] = 'attachment; filename=' + attachment_name  # 邮件显示的附件名称
     msg.attach(att1)
 
+    # 邮箱:ytbenben147@126.com,1370365906@qq.com
     # 发送邮件_outlook邮箱
-    # try:
-    #     smtp = smtplib.SMTP()
-    #     smtp.connect('smtp-mail.outlook.com', '25')  # 连接到发邮件服务器 端口：25、587
-    #     smtp.starttls()  # 开启TLS/SSL加密
-    #     smtp.login('tigeryangjin@outlook.com', 'tiger19790909')  # 登录邮箱
-    #     smtp.sendmail('tigeryangjin@outlook.com', 'ytbenben147@126.com',
-    #                   str(msg))  # 发送邮件,ytbenben147@126.com,1370365906@qq.com
-    #     smtp.quit()
-    #     print('邮件发送成功！')
-    #     print('执行完毕！')
-    #     input()
-    # except Exception as e:
-    #     print(Exception, ":", e)
-    #     send_email(v_file_name)
-
-    # 发送邮件_QQ邮箱
     try:
         smtp = smtplib.SMTP()
-        smtp.connect('smtp.qq.com', '587')  # 连接到发邮件服务器 端口：465、587
+        smtp.connect('smtp-mail.outlook.com', '25')  # 连接到发邮件服务器 端口：25、587
         smtp.starttls()  # 开启TLS/SSL加密
-        smtp.login('tiger.impost@qq.com', 'Tiger@1979!')  # 登录邮箱
-        # 发送邮件,ytbenben147@126.com,1370365906@qq.com
-        smtp.sendmail('tiger.impost@qq.com', '1370365906@qq.com',
-                      str(msg))
+        smtp.login('tigeryangjin@outlook.com', 'tiger19790909')  # 登录邮箱
+        smtp.sendmail('tigeryangjin@outlook.com', '1370365906@qq.com', str(msg))
         smtp.quit()
         print('邮件发送成功！')
         print('执行完毕！')
@@ -283,6 +266,21 @@ def send_email(v_file_name):
     except Exception as e:
         print(Exception, ":", e)
         send_email(v_file_name)
+
+        # 发送邮件_QQ邮箱
+        # try:
+        #     smtp = smtplib.SMTP()
+        #     smtp.connect('smtp.qq.com', '465')  # 连接到发邮件服务器 端口：25
+        #     smtp.starttls()  # 开启TLS/SSL加密
+        #     smtp.login('tiger.impost@qq.com', 'Tiger@1979!')  # 登录邮箱
+        #     smtp.sendmail('12109471@qq.com', '1370365906@qq.com', str(msg))
+        #     smtp.quit()
+        #     print('邮件发送成功！')
+        #     print('执行完毕！')
+        #     input()
+        # except Exception as e:
+        #     print(Exception, ":", e)
+        #     send_email(v_file_name)
 
 
 def top_level():
