@@ -267,21 +267,6 @@ def send_email(v_file_name):
         print(Exception, ":", e)
         send_email(v_file_name)
 
-        # 发送邮件_QQ邮箱
-        # try:
-        #     smtp = smtplib.SMTP()
-        #     smtp.connect('smtp.qq.com', '465')  # 连接到发邮件服务器 端口：25
-        #     smtp.starttls()  # 开启TLS/SSL加密
-        #     smtp.login('tiger.impost@qq.com', 'Tiger@1979!')  # 登录邮箱
-        #     smtp.sendmail('12109471@qq.com', '1370365906@qq.com', str(msg))
-        #     smtp.quit()
-        #     print('邮件发送成功！')
-        #     print('执行完毕！')
-        #     input()
-        # except Exception as e:
-        #     print(Exception, ":", e)
-        #     send_email(v_file_name)
-
 
 def top_level():
     # 伊利邮件总函数

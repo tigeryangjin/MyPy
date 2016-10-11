@@ -29,12 +29,11 @@ def send_email(v_file_name):
         smtp.connect('smtp-mail.outlook.com', '25')  # 连接到发邮件服务器 端口：25、587
         smtp.starttls()  # 开启TLS/SSL加密
         smtp.login('tigeryangjin@outlook.com', 'tiger19790909')  # 登录邮箱
-        smtp.sendmail('tigeryangjin@outlook.com', 'ytbenben147@126.com',
+        smtp.sendmail('tigeryangjin@outlook.com', 'tiger.impost@qq.com',
                       str(msg))
         smtp.quit()
         print('邮件发送成功！')
         print('执行完毕！')
-        input()
     except Exception as e:
         print(Exception, ":", e)
         send_email(v_file_name)
