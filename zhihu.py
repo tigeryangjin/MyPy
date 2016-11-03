@@ -8,7 +8,7 @@ def getXSRF(data):
     # 获取_xsrf值
     cer = re.compile('name="_xsrf" value="(.*)"', flags=0)
     strlist = cer.findall(data)
-    return strlist
+    return strlist[0]
 
 
 def ungzip(data):
@@ -27,4 +27,3 @@ url = 'https://www.zhihu.com'
 urlop = urllib.request.urlopen(url, timeout=2)
 data = urlop.read().decode('utf-8')
 print(getXSRF(data))
-print(data)
