@@ -1,5 +1,6 @@
-import math
-
-print(math.log2(20))
-print(math.log10(20))
-print(math.log1p(20))
+x = [1, 2, 3]
+y = [4, 5, 6]
+z = [7, 8, 9]
+xyz = zip(x, y, z)
+u=zip(*xyz)
+print(u)
