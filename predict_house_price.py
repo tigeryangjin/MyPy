@@ -14,3 +14,6 @@ def get_data(file_name):
         X_parameter.append([float(single_square_feet)])
         Y_parameter.append(float(single_price_value))
     return X_parameter, Y_parameter
+
+
+print(get_data('F:\Documents\MyPy\MyPy\input_data.csv'))
