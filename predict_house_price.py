@@ -44,6 +44,8 @@ def show_linear_line(X_parameters, Y_parameters):
 
 
 X, Y = get_data('F:\Documents\MyPy\MyPy\input_data.csv')
+print(X)
+print(Y)
 predictvalue = 700
 result = linear_model_main(X, Y, predictvalue)
 print("Intercept value ", result['intercept'])
