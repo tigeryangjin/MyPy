@@ -27,6 +27,7 @@ def linear_model_main(X_parameters, Y_parameters, predict_value):
     predictions['intercept'] = regr.intercept_
     predictions['coefficient'] = regr.coef_
     predictions['predicted_value'] = predict_outcome
+    predictions['score'] = regr.score(X_parameters,Y_parameters)
     return predictions
 
 
@@ -48,9 +49,6 @@ result = linear_model_main(X, Y, predictvalue)
 print("Intercept value ", result['intercept'])
 print("coefficient", result['coefficient'])
 print("Predicted value: ", result['predicted_value'])
-print(type(X))
-print(X)
-print(type(Y))
-print(Y)
+print("Score: ", result['score'])
 
 # show_linear_line(X, Y)
