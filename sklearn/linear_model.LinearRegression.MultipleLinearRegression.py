@@ -47,10 +47,10 @@ DisposableIncome = 5800
 PriceIndex = 135
 predictvalue = [DisposableIncome, PriceIndex]
 predictvalue=np.array(predictvalue).reshape(1,-1)
-print(type(predictvalue))
 result = linear_model_main(X, Y,predictvalue)
 print("Intercept value ", result['intercept'])
 print("coefficient", result['coefficient'])
 print("Predicted value: ", result['predicted_value'])
+print('Y=',result['intercept'],'+(',result['coefficient'][0],'*X2)+(',result['coefficient'][1],'*X3)')
 
 # show_linear_line(X, Y)

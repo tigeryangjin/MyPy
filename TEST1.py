@@ -11,5 +11,5 @@ d=np.array(b).reshape(1,-1)
 print(type(d))
 
 e=np.array(b).reshape(-1,1)
-print(e)
+print(e[1])
 print(type(e))
