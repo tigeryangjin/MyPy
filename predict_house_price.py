@@ -53,4 +53,4 @@ print("coefficient", result['coefficient'])
 print("Predicted value: ", result['predicted_value'])
 print("Score: ", result['score'])
 
-# show_linear_line(X, Y)
+show_linear_line(X, Y)

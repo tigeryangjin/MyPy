@@ -1,15 +1,15 @@
-# encoding: UTF-8
-import re
+import numpy as np
 
-# 将正则表达式编译成Pattern对象
-pattern = re.compile(r'hello')
+a=(5800,135)
+print(type(a))
+b=[5800,135]
+print(type(b))
+c={5800,135}
+print(type(c))
 
-# 使用Pattern匹配文本，获得匹配结果，无法匹配时将返回None
-match = pattern.match('hello world!')
+d=np.array(b).reshape(1,-1)
+print(type(d))
 
-if match:
-    # 使用Match获得分组信息
-    print(match.group())
-
-
-print(re.match('hello','hello world!').group())
+e=np.array(b).reshape(-1,1)
+print(e)
+print(type(e))
