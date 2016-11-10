@@ -1,11 +1,16 @@
-from sklearn.linear_model import LinearRegression
+class Desc:
+    def __get__(self, ins, cls):
+        print('self in Desc: %s ' % self)
+        print(self, ins, cls)
 
-X = [[1, 1, 1], [1, 1, 2], [1, 2, 1]]
-Y = [[6], [9], [8]]
 
-model = LinearRegression()
-model.fit(X, Y)
-x2 = [[1, 3, 5]]
-y2 = model.predict(x2)
-s = model.score(X, Y)
-print(y2,s)
+class Test:
+    x = Desc()
+
+    def prt(self):
+        print('self in Test: %s' % self)
+
+
+t = Test()
+t.prt()
+t.x

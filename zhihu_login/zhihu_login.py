@@ -47,4 +47,28 @@ class ZhiHuClient(object):
     cookieFile = os.path.join(sys.path[0], "cookie")
 
     def __int__(self):
-        os.chdir(sys.path[0])
+        os.chdir(sys.path[0])  # 设置脚本所在目录为当前工作目录
+
+        self.__session = requests.Session()
+        self.__session.headers = self.headers  # 用self调用类变量是防止将来类改名
+        # 若已经有 cookie 则直接登录
+        self.__cookie = self.__loadCookie()
+        if self.__cookie:
+            print("检测到cookie文件，直接使用cookie登录")
+            self.__session.cookies.update(self.__cookie)
+            soup = BS(self.open(r"http://www.zhihu.com/").text, "html.parser")
+            print("已登陆账号： %s" % soup.find("span", class_="name").getText())
+        else:
+            print("没有找到cookie文件，请调用login方法登录一次！")
+
+    # 登录
+    def login(self, username, password):
+        """
+        验证码错误返回：
+        {'errcode': 1991829, 'r': 1, 'data': {'captcha': '请提交正确的验证码 :('}, 'msg': '请提交正确的验证码 :('}
+        登录成功返回：
+        {'r': 0, 'msg': '登陆成功'}
+        """
+        self.__username = username
+        self.__password = password
+        self.__loginURL = self.loginURL.format(self.__getUsernameType())
