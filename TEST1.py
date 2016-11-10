@@ -1,15 +1,3 @@
-import numpy as np
+import sys
+import os
 
-a=(5800,135)
-print(type(a))
-b=[5800,135]
-print(type(b))
-c={5800,135}
-print(type(c))
-
-d=np.array(b).reshape(1,-1)
-print(type(d))
-
-e=np.array(b).reshape(-1,1)
-print(e[1])
-print(type(e))
