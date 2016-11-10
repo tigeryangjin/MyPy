@@ -27,6 +27,7 @@ def linear_model_main(X_parameters, Y_parameters, predict_value):
     predictions['intercept'] = regr.intercept_
     predictions['coefficient'] = regr.coef_
     predictions['predicted_value'] = predict_outcome
+    predictions['score'] = regr.score(X_parameters, Y_parameters)
     return predictions
 
 
@@ -46,11 +47,12 @@ X, Y = get_data('F:\Documents\MyPy\MyPy\input_data_MLR.csv')
 DisposableIncome = 5800
 PriceIndex = 135
 predictvalue = [DisposableIncome, PriceIndex]
-predictvalue=np.array(predictvalue).reshape(1,-1)
-result = linear_model_main(X, Y,predictvalue)
+predictvalue = np.array(predictvalue).reshape(1, -1)
+result = linear_model_main(X, Y, predictvalue)
 print("Intercept value ", result['intercept'])
 print("coefficient", result['coefficient'])
 print("Predicted value: ", result['predicted_value'])
-print('Y=',result['intercept'],'+(',result['coefficient'][0],'*X2)+(',result['coefficient'][1],'*X3)')
+print("Score: ", result['score'])
+print('Y=', result['intercept'], '+(', result['coefficient'][0], '*X2)+(', result['coefficient'][1], '*X3)')
 
 # show_linear_line(X, Y)
