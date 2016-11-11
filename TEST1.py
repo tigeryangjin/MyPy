@@ -1,8 +1,9 @@
-class Test(object):
+class Test():
     def prt(self, username, password):
-        print(self.username)
-        print(self.password)
+        self.username = username
+        self.password = password
+        print(self.username, self.password)
 
 
-t = Test("tiger","1979")
-t.prt()
+t = Test()
+t.prt('tiger', '1979')

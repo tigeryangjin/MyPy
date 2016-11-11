@@ -1,16 +1,23 @@
-class Desc:
-    def __get__(self, ins, cls):
-        print('self in Desc: %s ' % self)
-        print(self, ins, cls)
+class Employee:
+    '所有员工的基类'
+    empCount = 0
+
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+        Employee.empCount += 1
+
+    def displayCount(self):
+        print("Total Employee %d" % Employee.empCount)
+
+    def displayEmployee(self):
+        print("Name : ", self.name, ", Salary: ", self.salary)
 
 
-class Test:
-    x = Desc()
+e1 = Employee('bill', 500)
+e2 = Employee('john', 800)
 
-    def prt(self):
-        print('self in Test: %s' % self)
-
-
-t = Test()
-t.prt()
-t.x
+e1.displayEmployee()
+e1.displayCount()
+e2.displayEmployee()
+e2.displayCount()
