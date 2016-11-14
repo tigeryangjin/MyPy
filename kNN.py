@@ -83,7 +83,7 @@ def datingClassTest():
 
 
 datingClassTest()
-
+plt_scatter()
 
 
 
