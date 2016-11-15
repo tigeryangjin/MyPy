@@ -1,16 +1,18 @@
-import copy
+import random
 
-tempList = [0, 1, 2, [3, 4]]
-testList = tempList
-testCopyList = copy.copy(tempList)
-testDeepCopyList = copy.deepcopy(testList)
+a = []
+a.append(random.randint(0, 9))
+a.append(random.randint(0, 9))
+a.append(random.randint(0, 9))
 
-tempList.append('sign1')
-print('testList:',testList)
-print('testCopyList:',testCopyList)
-print('testDeepCopyList:',testDeepCopyList)
-print('******************')
-testList[3].append('sign2')
-print('testList:',testList)
-print('testCopyList:',testCopyList)
-print('testDeepCopyList:',testDeepCopyList)
+print(a)
+for i in range(3):
+    for j in range(3):
+        if i == j:
+            pass
+        else:
+            for k in range(3):
+                if j == k or i == k:
+                    pass
+                else:
+                    print(a[i], a[j], a[k])
