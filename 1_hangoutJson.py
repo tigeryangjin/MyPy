@@ -27,10 +27,6 @@ def user_name_mapping(data):
     return user_map
 
 
-user_dict = user_name_mapping(json_data)
-print(user_dict)
-
-
 # Parse data into flat list
 def fetch_messages(data):
     messages = []
@@ -88,3 +84,7 @@ def fetch_messages(data):
 cols = ['conversation_id', 'event_id', 'timestamp', 'sender',
         'message', 'message_length', 'participants', 'participants_str',
         'num_participants', 'message_type']
+
+data1=json_data['0']
+# for i in json_data['conversation_state']:
+#     print(2)
