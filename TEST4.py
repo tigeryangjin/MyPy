@@ -1,6 +1,12 @@
-a = {'a': 1, 'b': 2, 'c': 3}
+import random
 
-print(a['a'])
 
-for i in a:
-    print(i)
+
+b='abcd'
+
+a=list(b)
+a[0]='w'
+a[1]='x'
+a[2]='y'
+a[3]='z'
+print(a)
