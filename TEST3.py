@@ -1,21 +1,2 @@
-import json
-from pprint import pprint
-
-with open('E:\Downloads\hangout.json', 'r', encoding="utf8") as f:
-    data = json.load(f)
-
-# print('data:', type(data))
-
-# for i in data:
-#     print(type(i))
-
-for i in data['conversation_state']:
-    # print(i)
-    print(type(i))
-
-print(data['conversation_state'][0])
-# print(data['conversation_state'][1]['response_header'])
-# print(data['conversation_state'][2]['response_header'])
-# print(data['conversation_state'][3]['response_header'])
-# print(data['conversation_state'][4]['response_header'])
-# print(data['conversation_state'][5]['response_header'])
+count=0
+print(type(count))
