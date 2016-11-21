@@ -8,9 +8,10 @@ def random_letter(n):
 
 def single_ns(word):
     # 单次自然选择
+    word = word.upper()
     length = len(word)
     s = '{:>' + str(length) + '}'
-    word_tmp = s.format('')
+    word_tmp = s.format('')  # 生成固定长度的空字符串
 
     word_tmp_list = list(word_tmp)
     word_list = list(word)
@@ -23,10 +24,11 @@ def single_ns(word):
         for i in range(len(word_list)):
             if word_list[i] == random_word_list[i]:
                 word_tmp_list[i] = random_word_list[i]
-        print(word_tmp_list, count)
+        print(word_tmp_list, random_word_list, count)
 
 
 def ns(word):
+    word = word.upper()
     length = len(word)
     s = '{:>' + str(length) + '}'
     word_tmp = s.format('')
@@ -53,6 +55,5 @@ def avg_count(word, n):
     return sum_count / n
 
 
-print(avg_count('TIGER', 10))
-
-print(single_ns('TIGER'))
+print(avg_count('G', 10))
+print(single_ns('tigeryangjin'))

