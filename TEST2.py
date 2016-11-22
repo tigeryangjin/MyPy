@@ -1,5 +1,5 @@
 class Employee:
-    '所有员工的基类'
+    """所有员工的基类"""
     empCount = 0
 
     def __init__(self, name, salary):
@@ -7,7 +7,7 @@ class Employee:
         self.salary = salary
         Employee.empCount += 1
 
-    def displayCount(self):
+    def display_count(self):
         print("Total Employee %d" % Employee.empCount)
 
     def displayEmployee(self):
@@ -18,6 +18,6 @@ e1 = Employee('bill', 500)
 e2 = Employee('john', 800)
 
 e1.displayEmployee()
-e1.displayCount()
+e1.display_count()
 e2.displayEmployee()
-e2.displayCount()
+e2.display_count()

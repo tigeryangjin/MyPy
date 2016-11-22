@@ -1,9 +1,3 @@
-class Test():
-    def prt(self, username, password):
-        self.username = username
-        self.password = password
-        print(self.username, self.password)
-
-
-t = Test()
-t.prt('tiger', '1979')
+d = {'a': 1, 'b': 2, 'c': 3}
+for k,v in d.items():
+    print(k,v)
