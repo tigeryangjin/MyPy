@@ -17,13 +17,16 @@ def crack_dict(max, min=1, chars=None):
 
 
 # 测试一下：
-max, min = 2, 1
+max, min = 11, 11
 d = crack_dict(max, min)
 
-
 # print(sum([95 ** i for i in range(min, max + 1)]))
-print(type(d))
+# print(type(d))
+j = 0
 for i in d:
-    print(i,type(i),''.join(tuple(i)))
+    j += 1
+    if ''.join(tuple(i))=='admin520520':
+        print(''.join(tuple(i)), j)
 
-# print(sum((1 for i in d)))
+
+
