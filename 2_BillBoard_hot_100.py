@@ -4,8 +4,8 @@ import re
 
 def get_song_info():
     url = 'http://www.billboard.com/charts/hot-100'
-    urlop = urllib.request.urlopen(url, timeout=10)
-    data = urlop.read().decode('utf-8')
+    url_op = urllib.request.urlopen(url, timeout=10)
+    data = url_op.read().decode('utf-8')
     '''
     pattern_ranking:歌曲排名
     pattern_song_name:歌曲名称
