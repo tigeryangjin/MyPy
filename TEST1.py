@@ -1,7 +1,41 @@
-import urllib.request
-import re
+from math import log2
 
-url = 'https://api.douban.com/v2/book/1220562'
-url_op = urllib.request.urlopen(url, timeout=10)
-data = url_op.read().decode('utf-8')
-print(data)
+p1 = 0.03125
+p2 = 0.03125
+p3 = 0.03125
+p4 = 0.03125
+p5 = 0.03125
+p6 = 0.03125
+p7 = 0.03125
+p8 = 0.03125
+p9 = 0.03125
+p10 = 0.03125
+p11 = 0.03125
+p12 = 0.03125
+p13 = 0.03125
+p14 = 0.03125
+p15 = 0.03125
+p16 = 0.03125
+p17 = 0.03125
+p18 = 0.03125
+p19 = 0.03125
+p20 = 0.03125
+p21 = 0.03125
+p22 = 0.03125
+p23 = 0.03125
+p24 = 0.03125
+p25 = 0.03125
+p26 = 0.03125
+p27 = 0.03125
+p28 = 0.03125
+p29 = 0.03125
+p30 = 0.03125
+p31 = 0.03125
+p32 = 0.03125
+h = -(p1 * log2(p1) + p2 * log2(p2) + p3 * log2(p3) + p4 * log2(p4) + p5 * log2(p5) + p6 * log2(p6) + p7 * log2(
+    p7) + p8 * log2(p8) + p9 * log2(p9) + p10 * log2(p10) + p11 * log2(p11) + p12 * log2(p12) + p13 * log2(
+    p13) + p14 * log2(p14) + p15 * log2(p15) + p16 * log2(p16) + p17 * log2(p17) + p18 * log2(p18) + p19 * log2(
+    p19) + p20 * log2(p20) + p21 * log2(p21) + p22 * log2(p22) + p23 * log2(p23) + p24 * log2(p24) + p25 * log2(
+    p25) + p26 * log2(p26) + p27 * log2(p27) + p28 * log2(p28) + p29 * log2(p29) + p30 * log2(p30) + p31 * log2(
+    p31) + p32 * log2(p32))
+print(h)
