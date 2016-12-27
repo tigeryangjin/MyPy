@@ -1,4 +1,9 @@
-pa=12/38
-pb=18/38
-print(pa*pb)
-print(6/38)
+l=[]
+l.extend('a')
+l.extend('b')
+print(l)
+
+a=[]
+a.append('0')
+a.append('1')
+print(a)

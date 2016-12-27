@@ -82,7 +82,7 @@ def main(n):
     i = 0
     for j in password:
         i += 1
-        if i >= 935632:  # 断点
+        if i >= 1052652:  # 断点
             try:
                 ms = MsSql(host="192.168.2.228", user="hr", pwd=''.join(tuple(j)),
                            db="zktime8")
