@@ -1,31 +1,16 @@
-import requests
-import re
+import pandas as pd
 
-# 创建循环链接
-urls = []
-for i in list(range(1, 100)):
-    urls.append(
-        'https://rate.tmall.com/list_detail_rate.htm?itemId=521136254098&spuId=345965243&sellerId=2106525799&order=1&currentPage=%s' % i)
-# 构建字段容器
-nickname = []
-ratedate = []
-color = []
-size = []
-ratecontent = []
-# 循环抓取数据
-for url in urls:
-    content = requests.get(url).text
+index_loc = ['a', 'b']
+index_iloc = [1, 2]
+data = [[1, 2, 3, 4], [5, 6, 7, 8]]
 
-    # 借助正则表达式使用findall进行匹配查询
-    nickname.extend(re.findall('"displayUserNick":"(.*?)"', content))
-    color.extend(re.findall(re.compile('颜色分类:(.*?);'), content))
-    size.extend(re.findall(re.compile('尺码:(.*?);'), content))
-    ratecontent.extend(re.findall(re.compile('"rateContent":"(.*?)","rateDate"'), content))
-    ratedate.extend(re.findall(re.compile('"rateDate":"(.*?)","reply"'), content))
-    print(nickname, color)
+columns = ['one', 'two', 'three', 'four']
+df1 = pd.DataFrame(data=data, index=index_loc, columns=columns)
+df2 = pd.DataFrame(data=data, index=index_iloc, columns=columns)
 
-# 写入数据
-file = open('南极人天猫评价.csv', 'w')
-for i in list(range(0, len(nickname))):
-    file.write(','.join((nickname[i], ratedate[i], color[i], size[i], ratecontent[i])) + '\n')
-file.close()
+# print(df1.loc['a'])
+# print(df2.loc[1])
+print(df1)
+print(df2)
+print(df1.loc[1])
+print(df2.loc['a'])
