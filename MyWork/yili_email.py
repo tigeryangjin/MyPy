@@ -246,7 +246,7 @@ def yili_item_215():
     for i in range(len(sql_lines)):
         sql_text += sql_lines[i].strip() + ' '
     # 替换商品编码列表字段
-    sql_text = sql_text.replace(':item_list', v_item_list)
+    sql_text = sql_text.replace(':ITEM_LIST', v_item_list)
     # 日期参数
     v_byear = int(v_bdate[0:4])
     v_bmonth = int(v_bdate[5:7])
@@ -360,7 +360,7 @@ def top_level():
     elif msg == '3':
         # [3] 单品档期销售
         yili_item_215()
-
+        send_email(v_file_name)
     else:
         print('输入错误！')
         top_level()
