@@ -233,17 +233,20 @@ def yili_month_215():
     print('导出到xlsx文件成功！')
     print(v_file_name)
 
+
 def yili_item_215():
-    # 整体215中类月汇总数据
+    # 单品销售数据
     v_bdate = input('请输入月开始日期（格式：yyyy-mm-dd）:')
     v_edate = input('请输入月结束日期（格式：yyyy-mm-dd）:')
+    v_item_list = input('请输入商品编码列表，用逗号隔开:')
     # Oracle查询SQL
-    sql_file = open('D:\WORK\BBG\JOB\伊利\MONTH_ALL_215.sql', 'r')
+    sql_file = open('D:\WORK\BBG\JOB\伊利\IT_yili_215.sql', 'r')
     sql_lines = sql_file.readlines()
     sql_text = ''
     for i in range(len(sql_lines)):
         sql_text += sql_lines[i].strip() + ' '
-
+    # 替换商品编码列表字段
+    sql_text = sql_text.replace(':item_list', v_item_list)
     # 日期参数
     v_byear = int(v_bdate[0:4])
     v_bmonth = int(v_bdate[5:7])
@@ -269,7 +272,7 @@ def yili_item_215():
     # 生成excel文件名
     path = 'D:\WORK\BBG\JOB\伊利\表格\\'
     global v_file_name
-    v_file_name = 'MONTH_' + v_bdate + '~' + v_edate + '.xlsx '
+    v_file_name = 'IT_' + v_bdate + '~' + v_edate + '.xlsx '
     v_file_path = path + v_file_name
 
     workbook = xlsxwriter.Workbook(v_file_path)
@@ -282,27 +285,23 @@ def yili_item_215():
     data_format = workbook.add_format({'font_size': 9, 'font_name': '宋体'})
 
     # 写入列名
-    worksheet.write(0, 0, '销售日期', head_format)
-    worksheet.write(0, 1, '小类', head_format)
-    worksheet.write(0, 2, '小类名称', head_format)
-    worksheet.write(0, 3, '供应商编码', head_format)
-    worksheet.write(0, 4, '供应商名称', head_format)
-    worksheet.write(0, 5, '门店编码', head_format)
-    worksheet.write(0, 6, '门店名称', head_format)
-    worksheet.write(0, 7, '业态', head_format)
-    worksheet.write(0, 8, '区域', head_format)
-    worksheet.write(0, 9, '商品', head_format)
-    worksheet.write(0, 10, '商品名称', head_format)
-    worksheet.write(0, 11, '销售数量', head_format)
-    worksheet.write(0, 12, '销售成本', head_format)
-    worksheet.write(0, 13, '销售金额', head_format)
-    worksheet.write(0, 14, '毛利额', head_format)
+    worksheet.write(0, 0, '门店编码', head_format)
+    worksheet.write(0, 1, '门店名称', head_format)
+    worksheet.write(0, 2, '商品', head_format)
+    worksheet.write(0, 3, '商品名称', head_format)
+    worksheet.write(0, 4, '供应商编码', head_format)
+    worksheet.write(0, 5, '供应商名称', head_format)
+    worksheet.write(0, 6, '销售数量', head_format)
+    worksheet.write(0, 7, '销售成本', head_format)
+    worksheet.write(0, 8, '销售金额', head_format)
+    worksheet.write(0, 9, '毛利额', head_format)
     for r in range(len(sql_result)):
         for c in range(len(sql_result[r])):
             worksheet.write(r + 1, c, sql_result[r][c], data_format)
     workbook.close()
     print('导出到xlsx文件成功！')
     print(v_file_name)
+
 
 def send_email(v_file_name):
     # 构造邮件头和正文
@@ -358,6 +357,10 @@ def top_level():
         # [2] 整体215中类月汇总销售
         yili_month_215()
         send_email(v_file_name)
+    elif msg == '3':
+        # [3] 单品档期销售
+        yili_item_215()
+
     else:
         print('输入错误！')
         top_level()
