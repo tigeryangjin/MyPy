@@ -1,5 +1,23 @@
-import re
+import random
 
-p = re.compile(r'\d+')
-for m in p.finditer('one1two2three3four4'):
-    print(m.group())
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
+print(random.randrange(1, 3, 2))
