@@ -14,8 +14,15 @@ def live():
         # 抽中的人出列
         list_id.pop(r - 1)
     # 返回最后活下来的
-    return list_id
+    return list_id[0]
 
-for i in range(10000):
-    last_live_id=[]
-    last_live_id.append(live())
+
+last_live_id = []
+# 试验次数
+test_count = 1000000
+for i in range(test_count):
+    id = live()
+    last_live_id.append(id)
+
+for i in range(600):
+    print(i + 1, last_live_id.count(i + 1) / test_count)
