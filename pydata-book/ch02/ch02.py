@@ -1,6 +1,10 @@
 import json
 from collections import defaultdict
 from collections import Counter
+from pandas import DataFrame, Series
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 path = 'usagov_bitly_data2012-03-16-1331923249.txt'
 records = [json.loads(line) for line in open(path)]
@@ -25,7 +29,7 @@ def get_counts2(sequence):
 
 
 def top_counts(count_dict, n=10):
-    value_key_pairs = [(tz, count) for tz, count in count_dict.items()]
+    value_key_pairs = [(count, tz) for tz, count in count_dict.items()]
     value_key_pairs.sort()
     return value_key_pairs[-n:]
 
@@ -38,8 +42,19 @@ counts2 = get_counts2(time_zones)
 
 counts3 = Counter(time_zones).most_common(10)
 
-print(top_counts(counts1))
-print(top_counts(counts2))
-print(counts3)
+# print(top_counts(counts1))
+# print(top_counts(counts2))
+# print(counts3)
+# print(top_counts(counts1))
 # for i in range(len(records)):
 #     print(records[i])
+
+frame = DataFrame(records)
+clean_tz = frame['tz'].fillna('Missing')
+clean_tz[clean_tz == ''] = 'Unknown'
+tz_counts = clean_tz.value_counts()
+# print(tz_counts[:10])
+tz_counts[:10].plot(kind='barh', rot=0)
+# plt.show()
+print(frame['a'][1])
+print(frame[:1])
