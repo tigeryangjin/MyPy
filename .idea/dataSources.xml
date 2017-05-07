@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+  <component name="DataSourceManagerImpl" format="xml" hash="2665496167">
     <data-source source="LOCAL" name="Oracle - @ra-scan.bbgretek.com.cn" uuid="6bef2471-b656-4c33-8cf3-6c2e6a90d8f6">
       <driver-ref>oracle</driver-ref>
       <auto-commit>false</auto-commit>
