@@ -1,2 +1,4 @@
-set1=frozenset([1,2,3,4])
-print(set1)
+a=[1,2,3]
+b=(1,2,3)
+print(type(a))
+print(type(b))
