@@ -17,7 +17,7 @@ def mp3_download():
     print('3779629:云音乐新歌榜')
     play_list = input('请输入playlistID：')
 
-    url = 'http://music.163.com/api/playlist/detail?id=' + play_list
+    url = 'http://music.163.com/api/playlist/detail?id=' + str(play_list)
     r = requests.get(url)
     status_code = r.json()['code']
 
@@ -30,10 +30,11 @@ def mp3_download():
     else:
         arr = r.json()['result']['tracks']
         play_list_name = r.json()['result']['name']  # 歌单名
-        download_path = 'G:/Music/Music/' + play_list_name + '/'  # 下载目录:每个歌单创建新的文件夹，文件名为歌单名
+        download_path = 'D:/Users/tiger/Music/' + play_list_name + '/'  # 下载目录:每个歌单创建新的文件夹，文件名为歌单名
 
         # 如果目录不存在这创建目录
-        if os.path.exists(download_path) == False:
+        if os.path.exists(download_path) is False:
+            print('文件夹不存在')
             os.makedirs(download_path)
         else:
             pass
@@ -49,9 +50,9 @@ def mp3_download():
             link = arr[i]['mp3Url']
             try:
                 urllib.request.urlretrieve(link, download_path + name)  # 提前要创建文件夹
-                print(name + str(artists) + link + ' 下载完成')
+                print(str(name) + str(artists) + str(link) + ' 下载完成')
             except:
-                print(name + str(artists) + link + ' 无法下载')
+                print(str(name) + str(artists) + str(link) + ' 无法下载')
 
 
 def playlist_search():
@@ -108,4 +109,4 @@ def playlist_to_file():
     print(time() - t)
 
 
-playlist_to_file()
+mp3_download()
