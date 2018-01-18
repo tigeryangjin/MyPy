@@ -1,15 +1,5 @@
-import tensorflow as tf
-import numpy as np
+import redis
 
-input1 = tf.constant(2.0)
-input2 = tf.constant(3.0)
-input3 = tf.constant(5.0)
-
-intermd = tf.add(input1, input2)
-mul = tf.multiply(input2, input3)
-
-with tf.Session() as sess:
-    result = sess.run([mul, intermd])  # 一次执行多个op
-    print(result)
-    print(type(result))
-    print(type(result[0]))
+r = redis.Redis(host='192.168.188.128', port=6379)
+r.set('guo', 'shuai')
+print(r.get('guo'))
