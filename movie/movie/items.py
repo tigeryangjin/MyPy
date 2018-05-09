@@ -13,7 +13,9 @@ class MovieItem(scrapy.Item):
     # name = scrapy.Field()
     pass
 
+
 class MovieItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    # ranking = scrapy.Field()
     name = scrapy.Field()

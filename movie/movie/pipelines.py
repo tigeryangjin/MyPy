@@ -12,6 +12,10 @@ class MoviePipeline(object):
 
 
 class MoviePipeline(object):
+    def open_spider(self, spider):
+        with open("my_meiju.txt", 'w') as fp:
+            fp.write('123' + '\n')
+
     def process_item(self, item, spider):
         with open("my_meiju.txt", 'a') as fp:
             fp.write(item['name'] + '\n')
