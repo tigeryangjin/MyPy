@@ -13,5 +13,6 @@ class MoviePipeline(object):
 
     def process_item(self, item, spider):
         with open("download/my_meiju.txt", 'a') as fp:
-            fp.write(item['ranking'] + ',' + item['name'] + ',' + item['url'] + '\n')
-            # fp.write(item['name'] + ',' + item['url'] + '\n')
+            fp.write(
+                '[' + item['ranking'] + '][' + item['name'] + '][' + item['episodes'] + '][http://www.meijutt.com' +
+                item['url'] + ']\n')

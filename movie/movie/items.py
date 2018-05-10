@@ -11,4 +11,5 @@ import scrapy
 class MovieItem(scrapy.Item):
     ranking = scrapy.Field()
     name = scrapy.Field()
+    episodes = scrapy.Field()
     url = scrapy.Field()

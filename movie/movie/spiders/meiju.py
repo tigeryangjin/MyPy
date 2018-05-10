@@ -12,8 +12,10 @@ class MeijuSpider(scrapy.Spider):
         movies = response.xpath('//ul[@class="top-list  fn-clear"]/li')
         for each_movie in movies:
             item = MovieItem()
-            # item['ranking'] = each_movie.xpath('./div/i/text()').extract()[0]
             item['ranking'] = each_movie.xpath('./div[@class="lasted-num fn-left"]/i/text()').extract()[0]
             item['name'] = each_movie.xpath('./h5/a/@title').extract()[0]
+            item['episodes'] = each_movie.xpath(
+                './span[@class="state1 new100state1"]/font/text()|./span[@class="state1 new100state1"]/text()').extract()[
+                0]
             item['url'] = each_movie.xpath('./h5/a/@href').extract()[0]
             yield item
