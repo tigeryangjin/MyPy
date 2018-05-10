@@ -1,5 +1,11 @@
-import redis
+def fab(max):
+    n, a, b = 0, 0, 1
+    L = []
+    while n < max:
+        L.append(b)
+        a, b = b, a + b
+        n = n + 1
+    return L
 
-r = redis.Redis(host='192.168.188.128', port=6379)
-r.mset(k1='v1', k2='v2')
-print(r.get('k1'))
+
+print(fab(10))
