@@ -8,9 +8,10 @@
 
 class MoviePipeline(object):
     def open_spider(self, spider):
-        with open("my_meiju.txt", 'w') as fp:
+        with open("download/my_meiju.txt", 'w') as fp:
             fp.write('')
 
     def process_item(self, item, spider):
         with open("download/my_meiju.txt", 'a') as fp:
-            fp.write(item['name'] + ',' + item['url'] + '\n')
+            fp.write(item['ranking'] + ',' + item['name'] + ',' + item['url'] + '\n')
+            # fp.write(item['name'] + ',' + item['url'] + '\n')
