@@ -8,12 +8,11 @@
 import scrapy
 
 
-class DoubanMovieItem(scrapy.Item):
-    # 排名
-    ranking = scrapy.Field()
-    # 电影名称
+class MovieTop250Item(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    url = scrapy.Field()
+    rank = scrapy.Field()
     movie_name = scrapy.Field()
-    # 评分
     score = scrapy.Field()
-    # 评论人数
-    score_num = scrapy.Field()
+    # price = scrapy.Field()

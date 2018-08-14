@@ -1,7 +1,11 @@
-#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-import redis
+import random
 
-r = redis.Redis(host='192.168.188.128', port=6379, db=0)
-r.hset('noset', 'python', '11')
-print(r.hget('noset', 'python'))
+
+def get_code():
+    source = list('0123456789')
+    for i in range(97, 123):
+        source.append(chr(i))
+    print(''.join(random.sample(source, 4)))
+
+
+print(get_code())

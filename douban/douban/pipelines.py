@@ -7,5 +7,10 @@
 
 
 class DoubanPipeline(object):
+    def open_spider(self, spider):
+        with open("douban_movie_top250.txt", 'w') as fp:
+            fp.write('')
+
     def process_item(self, item, spider):
-        return item
+        with open('douban_movie_top250.txt', 'a') as f:
+            f.write(item['rank'] + '	' + item['score'] + '	' + item['movie_name'] + '	' + item['url'] + '\n')
