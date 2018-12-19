@@ -1,21 +1,16 @@
-# -*- coding: utf-8 -*-
-from scrapy import Request
-from scrapy.spiders import Spider
+# coding: utf-8
+from scrapy import Request, Spider
 from douban.items import MovieTop250Item
 
 
-# scrapy crawl douban_movie_top250 -o douban.csv
+class movietop250(Spider):
+    """docstring for DoubanScrapy"""
+    name = 'douban'
+    # 爬虫起始url
+    start_urls = ["https://movie.douban.com/top250"]
 
-class DoubanMovieTop250Spider(Spider):
-    name = 'douban_movie_top250'
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
-    }
-    start_urls = ['https://movie.douban.com/top250']
-
-    def start_requests(self):
-        url = 'https://movie.douban.com/top250'
-        yield Request(url, headers=self.headers)
+    def start_request(self):
+        yield Request(self.start_urls, callback=self.parse)
 
     def parse(self, response):
         movies = response.xpath('//ol[@class="grid_view"]/li')
