@@ -1,11 +1,37 @@
-import random
+from numpy import *
 
 
-def get_code():
-    source = list('0123456789')
-    for i in range(97, 123):
-        source.append(chr(i))
-    print(''.join(random.sample(source, 4)))
+def loadDataSet():
+    postingList = [['my', 'dog', 'has', 'flea', 'problems', 'help', 'please'],
+                   ['maybe', 'not', 'take', 'him', 'to', 'dog', 'park', 'stupid'],
+                   ['my', 'dalmation', 'is', 'so', 'cute', 'I', 'love', 'him'],
+                   ['stop', 'posting', 'stupid', 'worthless', 'garbage'],
+                   ['mr', 'licks', 'ate', 'my', 'steak', 'how', 'to', 'stop', 'him'],
+                   ['quit', 'buying', 'worthless', 'dog', 'food', 'stupid']]
+    classVec = [0, 1, 0, 1, 0, 1]
+    return postingList, classVec
 
 
-print(get_code())
+def createVocabList(dataSet):
+    vocabSet = set([])
+    for document in dataSet:
+        vocabSet = vocabSet | set(document)
+    toList = list(vocabSet)
+    toList.sort()
+    return toList
+
+
+def setOfWord2Vec(vocabList, inputSet):
+    returnVec = [0] * len(vocabList)
+    for word in inputSet:
+        if word in vocabList:
+            returnVec[vocabList.index(word)] = 1
+        else:
+            print('the word: %s is not in my Vocabulary!' % word)
+    return returnVec
+
+
+listOPosts, listClasses = loadDataSet()
+myVocabList = createVocabList(listOPosts)
+
+print([0] * 7)
