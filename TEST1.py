@@ -33,5 +33,9 @@ def setOfWord2Vec(vocabList, inputSet):
 
 listOPosts, listClasses = loadDataSet()
 myVocabList = createVocabList(listOPosts)
-setOfWord2Vec(myVocabList, postinDoc)
-print([0] * 7)
+trainMat = []
+for postinDoc in listOPosts:
+    trainMat.append(setOfWord2Vec(myVocabList, postinDoc))
+
+print(trainMat)
+
