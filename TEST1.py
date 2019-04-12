@@ -37,5 +37,6 @@ trainMat = []
 for postinDoc in listOPosts:
     trainMat.append(setOfWord2Vec(myVocabList, postinDoc))
 
-print(trainMat)
-
+for i in range(len(trainMat)):
+    print(trainMat[i])
+print(listClasses)

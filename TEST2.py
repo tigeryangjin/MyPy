@@ -1,6 +1,17 @@
-myVocabList = ['I', 'ate', 'buying', 'cute', 'dalmation', 'dog', 'flea', 'food', 'garbage', 'has', 'help', 'him', 'how',
-               'is', 'licks', 'love', 'maybe', 'mr', 'my', 'not', 'park', 'please', 'posting', 'problems', 'quit', 'so',
-               'steak', 'stop', 'stupid', 'take', 'to', 'worthless']
+listOPosts = [['my', 'dog', 'has', 'flea', 'problems', 'help', 'please'],
+              ['maybe', 'not', 'take', 'him', 'to', 'dog', 'park', 'stupid'],
+              ['my', 'dalmation', 'is', 'so', 'cute', 'I', 'love', 'him'],
+              ['stop', 'posting', 'stupid', 'worthless', 'garbage'],
+              ['mr', 'licks', 'ate', 'my', 'steak', 'how', 'to', 'stop', 'him'],
+              ['quit', 'buying', 'worthless', 'dog', 'food', 'stupid']]
+vocabSet = set([])
+for document in listOPosts:
+    vocabSet = vocabSet | set(document)
+    print(document)
+toList = list(vocabSet)
+toList.sort()
+print(toList)
 
-print(type(myVocabList))
-print(myVocabList.index('worthless'))
+
+
+
